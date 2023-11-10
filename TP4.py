@@ -34,7 +34,7 @@ while i < 5 :
 # ------------ Création du vaisseau ------------
 
 # Position initiale du vaisseau
-PosX = 230
+PosX = 250
 PosY = 300
 
 ship = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10, width = 5, outline = 'black', fill = 'red')
