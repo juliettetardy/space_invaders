@@ -23,18 +23,34 @@ Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gra
 Canevas.pack(padx = 10, pady = 10)
 
 # ------------ Création des aliens ------------
-# Coordonnées X,Y des 5 anneaux :
-place = width_canvas/6 
-final_place = place - 20 - 125
-coord = [[final_place,30], [final_place + place,30], [final_place + 2*place,30], [final_place + 3*place,30], [final_place + 4*place, 30], [final_place + 5*place,30]]
-# Couleurs des 5 anneaux :
-coul = ["red", "yellow", "blue", "green", "black", "purple"]
-i = 0
-while i < 6 :
-     x0, y0 = coord[i][0], coord[i][1]
-     Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul[i])
-     i = i + 1
+# Couleurs des anneaux :
+coul_for6 = ["red", "yellow", "blue", "green", "black", "purple"]
+coul_for5 = ["pink", "orange", "brown", "white", "cornflowerblue"]
 
+height_aliens = 30
+for nmb_lines in range(1,4) :
+    if nmb_lines%2 != 0 :
+        # Coordonnées X,Y des anneaux :
+        place_for6 = width_canvas/6 
+        final_place_for6 = place_for6 - 20 - width_canvas/12
+        coord_for6 = [[final_place_for6, height_aliens], [final_place_for6 + place_for6, height_aliens], [final_place_for6 + 2*place_for6, height_aliens], [final_place_for6 + 3*place_for6, height_aliens], [final_place_for6 + 4*place_for6, height_aliens], [final_place_for6 + 5*place_for6, height_aliens]]
+        i = 0
+        while i < 6 :
+            x0, y0 = coord_for6[i][0], coord_for6[i][1]
+            Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for6[i])
+            i += 1
+    else : 
+        # Coordonnées X,Y des anneaux :
+        place_for5 = width_canvas/6
+        final_place_for5 = place_for5 - 20 
+        coord_for5 = [[final_place_for5, height_aliens], [final_place_for5 + place_for5, height_aliens], [final_place_for5 + 2*place_for5, height_aliens], [final_place_for5 + 3*place_for5, height_aliens], [final_place_for5 + 4*place_for5, height_aliens]]
+        i = 0
+        while i < 5 :
+            x0, y0 = coord_for5[i][0], coord_for5[i][1]
+            Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for5[i])
+            i += 1
+    height_aliens += 80
+    
 # ------------ Création du vaisseau ------------
 
 # Position initiale du vaisseau
