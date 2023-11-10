@@ -26,14 +26,27 @@ Canevas.pack(padx = 5, pady = 5)
 PosX = 230
 PosY = 150
 
+def keyboard(event):
+    global PosX,PosY
+    key = event.keysym
+    print(key)
+
+    if key == 'a': 
+        PosY -= 20
+    if key == 'q':
+        PosY += 20
+    if key == 'm':
+        PosX += 20
+    if key == 'l':
+        PosX -= 20
+    Canevas.coords(ship, PosX-10, PosY-10, PosX+10, PosY+10)
+
+
 ship = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10, width = 5, outline = 'black', fill = 'red')
 Canevas.focus_set()
 Canevas.bind('<Key>', keyboard)
 Canevas.pack(padx = 5, pady = 5)
 
-def keyboard(event):
-    global PosX,PosY
     
-
 # Affichage de la fenêtre
 window.mainloop()
