@@ -49,6 +49,11 @@ def left(evt):
 Canevas.bind_all("<KeyPress-Right>", right)
 Canevas.bind_all("<KeyPress-Left>", left)
 Canevas.pack(padx = 5, pady = 5)
+
     
 # Affichage de la fenêtre
 window.mainloop()
+
+
+
+
