@@ -26,6 +26,19 @@ print("Image de fond (item",item,")")
 Canevas.pack()
 
 # ------------ Création des aliens ------------
+    
+# Fonction générale pilotant les déplacements
+def move():
+    """ Entrées : Fonction déclenchée par le bouton [Démarrer]- pas d'entrée
+        Sorties : Fonction récursive qui redéfinit les coordonnées du centre
+            du cercle toutes les 30 ms, à condition que le drapeau soit levé"""
+    global x0, y0, dx, dy, l, r
+    x0 = x0+dx                                          # Nouvelle abscisse du centre du cercle
+    dessin.coords(cercle, x0-r, y0-r, x0+r, y0+r)
+    if x0 >= l-r or x0 <= r:                            # Bord droit ou bord gauche atteint,
+        dx = -dx                                        # le déplacement s'effectue dans l'autre sens
+    fen.after(30, move)
+
 # Couleurs des anneaux :
 coul_for6 = ["red", "yellow", "blue", "green", "black", "purple"]
 coul_for5 = ["pink", "orange", "brown", "white", "cornflowerblue"]
@@ -40,7 +53,7 @@ for nmb_lines in range(1,4) :
         i = 0
         while i < 6 :
             x0, y0 = coord_for6[i][0], coord_for6[i][1]
-            Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for6[i])
+            alien = Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for6[i])
             i += 1
     else : 
         # Coordonnées X,Y des anneaux :
@@ -50,27 +63,27 @@ for nmb_lines in range(1,4) :
         i = 0
         while i < 5 :
             x0, y0 = coord_for5[i][0], coord_for5[i][1]
-            Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for5[i])
+            alien = Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for5[i])
             i += 1
     height_aliens += 80
     
 # ------------ Création du vaisseau ------------
 
 # Position initiale du vaisseau
-PosX = 250
-PosY = 300
+PosX = width_canvas/2
+PosY = 650
 
 ship = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10, width = 5, outline = 'black', fill = 'red')
-Canevas.focus_set()
+#Canevas.focus_set()
 
-def right(evt):
+def right_ship(evt):
     Canevas.move(ship, 5, 0)
- 
-def left(evt):
+
+def left_ship(evt):
     Canevas.move(ship, -5, 0)
- 
-Canevas.bind_all("<KeyPress-Right>", right)
-Canevas.bind_all("<KeyPress-Left>", left)
+
+Canevas.bind_all("<KeyPress-Right>", right_ship)
+Canevas.bind_all("<KeyPress-Left>", left_ship)
 Canevas.pack(padx = 5, pady = 5)
 
     
