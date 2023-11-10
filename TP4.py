@@ -37,7 +37,7 @@ for nmb_lines in range(1,4) :
         i = 0
         while i < 6 :
             x0, y0 = coord_for6[i][0], coord_for6[i][1]
-            Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for6[i])
+            alien = Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for6[i])
             i += 1
     else : 
         # Coordonnées X,Y des anneaux :
@@ -47,25 +47,25 @@ for nmb_lines in range(1,4) :
         i = 0
         while i < 5 :
             x0, y0 = coord_for5[i][0], coord_for5[i][1]
-            Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for5[i])
+            alien = Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for5[i])
             i += 1
     height_aliens += 80
     
 # ------------ Création du vaisseau ------------
 
 # Position initiale du vaisseau
-PosX = 250
-PosY = 300
+PosX = width_canvas/2
+PosY = 650
 
 ship = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10, width = 5, outline = 'black', fill = 'red')
-Canevas.focus_set()
+#Canevas.focus_set()
 
 def right(evt):
     Canevas.move(ship, 5, 0)
- 
+
 def left(evt):
     Canevas.move(ship, -5, 0)
- 
+
 Canevas.bind_all("<KeyPress-Right>", right)
 Canevas.bind_all("<KeyPress-Left>", left)
 Canevas.pack(padx = 5, pady = 5)
