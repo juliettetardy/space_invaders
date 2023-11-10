@@ -2,16 +2,17 @@ from tkinter import Tk, Label, Button, Canvas, Text
 
 # Création de la fenêtre du jeu
 window = Tk()
-label_start = Label(window, text = 'Space Invaders', fg = 'navy')
+window.title('Space Invaders Ju2 version')
+score = 'score :'
+
+label_start = Label(window, fg = 'navy', text = score)
 label_start.pack()
 
 button_quit = Button (window, text = 'QUIT', fg = 'black', command = window.destroy)
 button_quit.pack()
 
-button_new_game = Button (window, text = 'New game', fg ='black', command =  )
+button_new_game = Button (window, text = 'New game', fg ='black')
 button_new_game.pack()
-
-lives = Text(window,  )
 
 # Création d'un widget Canvas (zone graphique)
 width_canvas = 480
