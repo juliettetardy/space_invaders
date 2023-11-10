@@ -23,6 +23,19 @@ Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gra
 Canevas.pack(padx = 10, pady = 10)
 
 # ------------ Création des aliens ------------
+    
+# Fonction générale pilotant les déplacements
+def move():
+    """ Entrées : Fonction déclenchée par le bouton [Démarrer]- pas d'entrée
+        Sorties : Fonction récursive qui redéfinit les coordonnées du centre
+            du cercle toutes les 30 ms, à condition que le drapeau soit levé"""
+    global x0, y0, dx, dy, l, r
+    x0 = x0+dx                                          # Nouvelle abscisse du centre du cercle
+    dessin.coords(cercle, x0-r, y0-r, x0+r, y0+r)
+    if x0 >= l-r or x0 <= r:                            # Bord droit ou bord gauche atteint,
+        dx = -dx                                        # le déplacement s'effectue dans l'autre sens
+    fen.after(30, move)
+
 # Couleurs des anneaux :
 coul_for6 = ["red", "yellow", "blue", "green", "black", "purple"]
 coul_for5 = ["pink", "orange", "brown", "white", "cornflowerblue"]
@@ -60,14 +73,14 @@ PosY = 650
 ship = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10, width = 5, outline = 'black', fill = 'red')
 #Canevas.focus_set()
 
-def right(evt):
+def right_ship(evt):
     Canevas.move(ship, 5, 0)
 
-def left(evt):
+def left_ship(evt):
     Canevas.move(ship, -5, 0)
 
-Canevas.bind_all("<KeyPress-Right>", right)
-Canevas.bind_all("<KeyPress-Left>", left)
+Canevas.bind_all("<KeyPress-Right>", right_ship)
+Canevas.bind_all("<KeyPress-Left>", left_ship)
 Canevas.pack(padx = 5, pady = 5)
 
     
