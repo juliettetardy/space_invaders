@@ -20,6 +20,20 @@ height_canvas = 320
 Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'blue')
 Canevas.pack(padx = 5, pady = 5)
 
+# ------------ Création du vaisseau ------------
+
+# Position initiale du vaisseau
+PosX = 230
+PosY = 150
+
+ship = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10, width = 5, outline = 'black', fill = 'red')
+Canevas.focus_set()
+Canevas.bind('<Key>', keyboard)
+Canevas.pack(padx = 5, pady = 5)
+
+def keyboard(event):
+    global PosX,PosY
+    
 
 # Affichage de la fenêtre
 window.mainloop()
