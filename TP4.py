@@ -52,6 +52,7 @@ button_new_game.grid (row = 2, sticky = NE, padx = 3, pady = 3)
 # Création d'un widget Canvas (zone graphique)
 width_canvas = 1500
 height_canvas = 700
+#ze veux recup les commits
 
 Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gray')
 #item = Canevas.create_image (0, 0, anchor=NW, image = picture)
