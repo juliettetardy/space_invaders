@@ -1,5 +1,6 @@
 from tkinter import Tk, Canvas ,Button ,Label, PhotoImage
 from invaders import Invaders
+from ship import Ship
 
 # Création de la fenêtre du jeu
 window = Tk()
@@ -25,8 +26,14 @@ Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gra
 Canevas.pack()
 
 # Création d'un alien 
-Invader1 = Invaders(370, 370, Canevas)
+Invader1 = Invaders(750, 25, Canevas)
 Invader1.invaders_move(Canevas, window)
+
+#Création du vaisseau/ joueur
+Player = Ship(750 ,625, Canevas)
+
+Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10)) 
+Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 
 
 # Affichage de la fenêtre
 window.mainloop()
