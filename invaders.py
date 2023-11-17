@@ -1,4 +1,5 @@
 drapeau = False
+
 class Invaders:
 
     def __init__(self, x, y, Canevas):

@@ -24,7 +24,7 @@ label_start = Label(window, fg = 'navy', text = score)
 label_start.grid()
 
 my_pic = Image.open("images/milky_way.jpg")
-resized = my_pic.resize((1500,700))
+resized = my_pic.resize((1500, 700))
 new_pic = ImageTk.PhotoImage(resized)
 
 button_quit = Button (window, text = 'Quit', fg = 'black', command = window.destroy)
