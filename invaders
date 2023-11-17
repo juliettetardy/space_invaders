@@ -1,0 +1,17 @@
+from tkinter import Tk, Canvas
+
+class Invaders:
+
+    def __init__(self, x, y):
+        self.x = x
+        self. y = y
+        self.speed = 15
+        self.apparence = Canvas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = 'green') 
+
+    
+
+    def invaders_move(self, canvas, move):
+
+
+
+    

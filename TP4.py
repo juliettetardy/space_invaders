@@ -1,6 +1,5 @@
 from tkinter import Tk, Label, Button, Canvas, Text, PhotoImage, NW 
-
-# def Alien() :
+from invaders import 
 
 # Création de la fenêtre du jeu
 window = Tk()
@@ -77,14 +76,14 @@ ship = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10, width = 5, outlin
 #Canevas.focus_set()
 
 def right_ship(evt):
-    Canevas.move(ship, 5, 0)
+    Canevas.move(ship, 10, 0)
 
 def left_ship(evt):
-    Canevas.move(ship, -5, 0)
+    Canevas.move(ship, -10, 0)
 
 Canevas.bind_all("<KeyPress-Right>", right_ship)
 Canevas.bind_all("<KeyPress-Left>", left_ship)
-Canevas.pack(padx = 5, pady = 5)
+Canevas.pack()
 
     
 # Affichage de la fenêtre
