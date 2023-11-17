@@ -45,7 +45,7 @@ height_canvas = 700
 Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gray')
 
 # Ajout d'une image de fond
-item = Canevas.create_image(0,0,anchor=NW, image=new_pic)
+item = Canevas.create_image(0, 0, anchor=NW, image=new_pic)
 print("Image de fond (item",item,")")
 Canevas.grid()
 
