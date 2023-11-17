@@ -1,33 +1,4 @@
-from tkinter import Tk, Label, Button, Canvas, Text, PhotoImage, NW, NSEW, NE
-#from invaders import
-
-drapeau = False
-
-# Fonction générale pilotant les déplacements des aliens
-def move() :
-    """ Entrées : Fonction déclenchée par le bouton [Démarrer]- pas d'entrée
-        Sorties : Fonction récursive qui redéfinit les coordonnées du centre
-            du cercle toutes les 30 ms, à condition que le drapeau soit levé"""
-    global x0, y0, dx, dy, l, r
-    x0 = x0 + dx                                            # Nouvelle abscisse du centre du cercle
-    window.coords (alien, x0 - r, y0 - r, x0 + r, y0  +r)   # Change les coordonnées
-    if x0 >= l-r or x0 <= r:                                # Bord droit ou bord gauche atteint,
-        dx = -dx                                            # le déplacement s'effectue dans l'autre sens
-    if drapeau :
-        fen.after(30, move)
-
-# Fonctions réceptionnant les événements 
-def stop() : #utile ?
-    """Cette fonction baisse le drapeau et arrête l'animation."""
-    global drapeau
-    drapeau = False
-
-def start() :
-    """Cette fonction lève le drapeau et lance l'animation."""
-    global drapeau
-    if drapeau == False :       # Nécessaire pour ne pas lancer plusieurs fois l'animation
-        drapeau = True
-        move()
+from tkinter import Tk, Label, Button, Canvas, Text, PhotoImage, NW, NE
 
 # Création de la fenêtre du jeu
 window = Tk()
@@ -40,10 +11,10 @@ label_start.grid()
 button_quit = Button (window, text = 'Quit', fg = 'black', command = window.destroy)
 button_quit.grid (row = 1, padx = 3, pady = 3)
 
-bouton_start = Button(window, text="Start game", width=9, command = start)
+bouton_start = Button(window, text="Start game", width=9)
 bouton_start.grid (row = 2, sticky = NW, padx = 3, pady = 3)
 
-bouton_stop = Button(window, text="Pause game", width=9, command = stop)
+bouton_stop = Button(window, text="Pause game", width=9)
 bouton_stop.grid (row = 2, padx = 3, pady = 3)
 
 button_new_game = Button (window, text = 'New game', fg ='black')

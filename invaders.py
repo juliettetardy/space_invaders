@@ -1,3 +1,5 @@
+drapeau = False
+
 class Invaders:
 
     def __init__(self, x, y, Canevas):
@@ -5,7 +7,6 @@ class Invaders:
         self. y = y
         self.speed = 5
         self.apparence = Canevas.create_oval(self.x, self.y, self.x + 40, self.y + 40, width = 2, outline = 'black', fill = 'green') 
-
 
     def invaders_move(self, Canevas, window):
         coord = Canevas.coords(self.apparence)
@@ -18,3 +19,4 @@ class Invaders:
 
 
     
+
