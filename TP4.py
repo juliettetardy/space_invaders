@@ -1,4 +1,5 @@
-from tkinter import Tk, Label, Button, Canvas, Text
+from tkinter import Tk, Label, Button, Canvas, Text, PhotoImage, NW 
+from invaders import
 
 drapeau = False
 
@@ -32,7 +33,7 @@ def start() :
 window = Tk()
 window.title('Space Invaders Ju2 version')
 score = 'score :'
-
+picture =  PhotoImage(file = "ciel_noir.gif")
 label_start = Label(window, fg = 'navy', text = score)
 label_start.pack()
 
@@ -45,8 +46,11 @@ button_new_game.pack()
 # Création d'un widget Canvas (zone graphique)
 width_canvas = 1500
 height_canvas = 700
+
 Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gray')
-Canevas.pack (padx = 10, pady = 10)
+item = Canevas.create_image(0,0,anchor=NW, image=picture)
+print("Image de fond (item",item,")")
+Canevas.pack()
 
 # ------------ Création des aliens ------------
 
@@ -89,14 +93,14 @@ ship = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10, width = 5, outlin
 #Canevas.focus_set()
 
 def right_ship(evt):
-    Canevas.move(ship, 5, 0)
+    Canevas.move(ship, 10, 0)
 
 def left_ship(evt):
-    Canevas.move(ship, -5, 0)
+    Canevas.move(ship, -10, 0)
 
 Canevas.bind_all("<KeyPress-Right>", right_ship)
 Canevas.bind_all("<KeyPress-Left>", left_ship)
-Canevas.pack(padx = 5, pady = 5)
+Canevas.pack()
 
     
 # Affichage de la fenêtre
