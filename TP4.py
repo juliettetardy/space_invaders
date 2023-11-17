@@ -1,5 +1,5 @@
-from tkinter import Tk, Label, Button, Canvas, Text, PhotoImage, NW 
-from invaders import
+from tkinter import Tk, Label, Button, Canvas, Text, PhotoImage, NW, NSEW, NE
+#from invaders import
 
 drapeau = False
 
@@ -9,10 +9,10 @@ def move() :
         Sorties : Fonction récursive qui redéfinit les coordonnées du centre
             du cercle toutes les 30 ms, à condition que le drapeau soit levé"""
     global x0, y0, dx, dy, l, r
-    x0 = x0 + dx                                          # Nouvelle abscisse du centre du cercle
+    x0 = x0 + dx                                            # Nouvelle abscisse du centre du cercle
     window.coords (alien, x0 - r, y0 - r, x0 + r, y0  +r)   # Change les coordonnées
-    if x0 >= l-r or x0 <= r:                            # Bord droit ou bord gauche atteint,
-        dx = -dx                                        # le déplacement s'effectue dans l'autre sens
+    if x0 >= l-r or x0 <= r:                                # Bord droit ou bord gauche atteint,
+        dx = -dx                                            # le déplacement s'effectue dans l'autre sens
     if drapeau :
         fen.after(30, move)
 
@@ -33,24 +33,30 @@ def start() :
 window = Tk()
 window.title('Space Invaders Ju2 version')
 score = 'score :'
-picture =  PhotoImage(file = "ciel_noir.gif")
+#picture =  PhotoImage(file = "ciel_noir.gif")
 label_start = Label(window, fg = 'navy', text = score)
-label_start.pack()
+label_start.grid()
 
-button_quit = Button (window, text = 'QUIT', fg = 'black', command = window.destroy)
-button_quit.pack()
+button_quit = Button (window, text = 'Quit', fg = 'black', command = window.destroy)
+button_quit.grid (row = 1, padx = 3, pady = 3)
 
-button_new_game = Button (window, text = 'New game', fg ='black', command=start)
-button_new_game.pack()
+bouton_start = Button(window, text="Start game", width=9, command = start)
+bouton_start.grid (row = 2, sticky = NW, padx = 3, pady = 3)
+
+bouton_stop = Button(window, text="Pause game", width=9, command = stop)
+bouton_stop.grid (row = 2, padx = 3, pady = 3)
+
+button_new_game = Button (window, text = 'New game', fg ='black')
+button_new_game.grid (row = 2, sticky = NE, padx = 3, pady = 3)
 
 # Création d'un widget Canvas (zone graphique)
 width_canvas = 1500
 height_canvas = 700
 
 Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gray')
-item = Canevas.create_image(0,0,anchor=NW, image=picture)
-print("Image de fond (item",item,")")
-Canevas.pack()
+#item = Canevas.create_image (0, 0, anchor=NW, image = picture)
+#print("Image de fond (item",item,")")
+#Canevas.grid()
 
 # ------------ Création des aliens ------------
 
@@ -100,7 +106,7 @@ def left_ship(evt):
 
 Canevas.bind_all("<KeyPress-Right>", right_ship)
 Canevas.bind_all("<KeyPress-Left>", left_ship)
-Canevas.pack()
+Canevas.grid()
 
     
 # Affichage de la fenêtre
