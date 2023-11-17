@@ -1,6 +1,32 @@
 from tkinter import Tk, Label, Button, Canvas, Text
 
-# def Alien() :
+drapeau = False
+
+# Fonction générale pilotant les déplacements des aliens
+def move() :
+    """ Entrées : Fonction déclenchée par le bouton [Démarrer]- pas d'entrée
+        Sorties : Fonction récursive qui redéfinit les coordonnées du centre
+            du cercle toutes les 30 ms, à condition que le drapeau soit levé"""
+    global x0, y0, dx, dy, l, r
+    x0 = x0 + dx                                          # Nouvelle abscisse du centre du cercle
+    window.coords (alien, x0 - r, y0 - r, x0 + r, y0  +r)   # Change les coordonnées
+    if x0 >= l-r or x0 <= r:                            # Bord droit ou bord gauche atteint,
+        dx = -dx                                        # le déplacement s'effectue dans l'autre sens
+    if drapeau :
+        fen.after(30, move)
+
+# Fonctions réceptionnant les événements 
+def stop() : #utile ?
+    """Cette fonction baisse le drapeau et arrête l'animation."""
+    global drapeau
+    drapeau = False
+
+def start() :
+    """Cette fonction lève le drapeau et lance l'animation."""
+    global drapeau
+    if drapeau == False :       # Nécessaire pour ne pas lancer plusieurs fois l'animation
+        drapeau = True
+        move()
 
 # Création de la fenêtre du jeu
 window = Tk()
@@ -13,28 +39,17 @@ label_start.pack()
 button_quit = Button (window, text = 'QUIT', fg = 'black', command = window.destroy)
 button_quit.pack()
 
-button_new_game = Button (window, text = 'New game', fg ='black')
+button_new_game = Button (window, text = 'New game', fg ='black', command=start)
 button_new_game.pack()
 
 # Création d'un widget Canvas (zone graphique)
 width_canvas = 1500
 height_canvas = 700
 Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gray')
-Canevas.pack(padx = 10, pady = 10)
+Canevas.pack (padx = 10, pady = 10)
 
 # ------------ Création des aliens ------------
-    
-# Fonction générale pilotant les déplacements
-def move():
-    """ Entrées : Fonction déclenchée par le bouton [Démarrer]- pas d'entrée
-        Sorties : Fonction récursive qui redéfinit les coordonnées du centre
-            du cercle toutes les 30 ms, à condition que le drapeau soit levé"""
-    global x0, y0, dx, dy, l, r
-    x0 = x0+dx                                          # Nouvelle abscisse du centre du cercle
-    dessin.coords(cercle, x0-r, y0-r, x0+r, y0+r)
-    if x0 >= l-r or x0 <= r:                            # Bord droit ou bord gauche atteint,
-        dx = -dx                                        # le déplacement s'effectue dans l'autre sens
-    fen.after(30, move)
+
 
 # Couleurs des anneaux :
 coul_for6 = ["red", "yellow", "blue", "green", "black", "purple"]
