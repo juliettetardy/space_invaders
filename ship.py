@@ -11,8 +11,8 @@ class Ship:
         coord = self.canevas.coords(self.apparence)
         new_position = coord[2] + delta
         if 20 < new_position < 1495: 
-            left = self.canevas.move(self.apparence, delta, 0)
-
-
+            self.canevas.move(self.apparence, delta, 0)
+        
+    
 
 
