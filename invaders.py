@@ -1,4 +1,4 @@
-drapeau = False
+"""drapeau = False"""
 
 class Invaders:
 

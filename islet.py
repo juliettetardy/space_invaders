@@ -8,13 +8,14 @@ class Islet :
         self.canevas = canevas
 
     def multiply_islet(self):
-        for i in range (3):
-            for j in range (6):
+        for i in range (8):
+            for j in range (3):
                 self.canevas.create_rectangle(
-                    self.x + (2*i + 1)*self.side,
-                    self.y + (2*j + 1)*self.side, 
-                    self.x+5 + (2*j + 1)*self.side, 
-                    self.y+10 + (2*i + 1)*self.side)
+                    self.x + (i)*self.side,
+                    self.y + (j)*self.side, 
+                    self.x + self.side + (i)*self.side, 
+                    self.y + self.side + (j)*self.side ,
+                    width = 1, outline = 'black', fill = 'gray' )
         
     
     
