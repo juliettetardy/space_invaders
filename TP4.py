@@ -66,7 +66,7 @@ for nmb_lines in range(1,4) :
 PosX = width_canvas/2
 PosY = 650
 
-ship = s.create_oval(PosX-10, PosY-10, PosX+10, PosY+10, width = 5, outline = 'black', fill = 'red')
+ship = Canevas.create_oval(PosX-10, PosY-10, PosX+10, PosY+10, width = 5, outline = 'black', fill = 'red')
 #Canevas.focus_set()
 
 def right_ship(evt):
