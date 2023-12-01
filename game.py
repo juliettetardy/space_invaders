@@ -4,6 +4,7 @@ from invaders import Invaders
 from ship import Ship
 from missile import Missile
 
+
 # Fonctions mise en marche et pause de l'animation
 
 def stop() : 
@@ -62,10 +63,10 @@ Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10))
 Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 
 
 #création d'un missile
-Coord = Ship.canevas.coord(Ship.apparence)
-Missile = Missile(Coord, Canevas, window )
-Canevas.bind_all("<KeyPress-Space>", lambda _: Player.missile(10)) 
-
+"""
+Missile = Missile(Canevas)
+Canevas.bind_all("<KeyPress-Space>", lambda _: Player.missile(Canevas,window)) 
+"""
 # Affichage de la fenêtre
 window.mainloop()
 
