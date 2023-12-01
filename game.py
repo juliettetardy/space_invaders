@@ -2,7 +2,6 @@ from tkinter import Tk, Canvas ,Button ,Label, PhotoImage, NW, NE
 from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
-from missile import Missile
 
 # Fonctions mise en marche et pause de l'animation
 def stop(drapeau) : 
@@ -103,7 +102,7 @@ Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10))
 
 #création d'un missile
 Coord = Ship.canevas.coord(Ship.apparence)
-Missile = Missile(Coord, Canevas, window )
+#Missile = Missile(Coord, Canevas, window )
 Canevas.bind_all("<KeyPress-Space>", lambda _: Player.missile(10)) 
 
 # Affichage de la fenêtre
