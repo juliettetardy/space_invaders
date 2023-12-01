@@ -1,3 +1,4 @@
+from missile import Missile
 from PIL import Image, ImageTk
 
 class Ship:
@@ -19,7 +20,11 @@ class Ship:
         coord = self.canevas.coords(self.player_item)
         new_position = coord[0] + delta
         if 20 < new_position < 1495: 
-            left = self.canevas.move(self.player_item, delta, 0) 
-    
+            left = self.canevas.move(self.apparence, delta, 0)
+        
+    def fire_shoot(self, window):
+        coord = self.canevas.coords(self.apparence)
+        self.shoot = Missile(coord[0]+7, coord[1] - 10, self.canevas, self)
+        self.shoot.bullet_move(window)
 
 
