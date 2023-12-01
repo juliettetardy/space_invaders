@@ -22,7 +22,6 @@ Il reste à faire :
 - Transformer les formes par des images
 - 
 
-
 """
 
 # Importation des fichiers nécessaires au fonctionnement du jeu
@@ -90,12 +89,10 @@ Player = Ship(765, 625, Canevas, window, width_canvas, height_canvas, "images/va
 Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10)) 
 Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 
 
-#création d'un missile
+# Création d'un missile
 Canevas.bind_all("<KeyPress-space>", lambda _: Player.fire_shoot(window)) 
 
-
 # Création d'îlots protecteurs
-
 islet1 = Islet (100, 480, 25, Canevas)
 islet2 = Islet (1200, 480, 25, Canevas)
 islet3 = Islet (650, 480, 25, Canevas)
