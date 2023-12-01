@@ -54,7 +54,7 @@ class Invader :
         self.invader_pic = Image.open(img_path)
         self.invader_pic = self.invader_pic.resize((100,100))
         self.pic = ImageTk.PhotoImage(self.invader_pic)
-        self.invader_item = self.canevas.create_image(self.w, self.h, image = self.pic)
+        self.invader_item = self.canevas.create_image(self.x + 20, self.y + 20, image = self.pic)
 
     def get_position(self) :
         return self.canevas.coords(self.apparence)

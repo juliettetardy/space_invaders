@@ -8,7 +8,6 @@ class Ship:
         self.y = y
         self.window = window
         self.canevas = canevas
-        #self.apparence = self.canevas.create_oval(self.x-80, self.y-80, self.x+80, self.y+80, width = 5, outline = 'black', fill = 'red')
         
         self.w = width/2
         self.h = height -70
@@ -16,15 +15,8 @@ class Ship:
         self.ship_pic = self.ship_pic.resize((130,130))
         self.pic = ImageTk.PhotoImage(self.ship_pic)
         self.player_item = self.canevas.create_image(self.w, self.h, image = self.pic)
-    """
-    def ship_move(self):
-        print("2")
-        if self.x >= 1530 or self.x <= 0 :
-            self.speed = -self.speed
 
-    """
     def ship_move(self, delta):
-        print("1")
         coord = self.canevas.coords(self.player_item)
         new_position = coord[0] + delta
         if 20 < new_position < 1495: 
