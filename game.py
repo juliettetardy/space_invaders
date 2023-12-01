@@ -30,18 +30,19 @@ from ship import Ship
 from islet import Islet
 
 
-# Fonctions mise en marche et pause de l'animation 
-def stop() : 
+# Fonctions mise en marche et pause de l'animation
+def stop(drapeau) : 
     # Cette fonction baisse le drapeau et arrête l'animation
-    global drapeau
     drapeau = False
 
-def start() :
+def start(drapeau) :
     # Cette fonction lève le drapeau et lance l'animation
-    global drapeau
     if drapeau == False :       # Nécessaire pour ne pas lancer plusieurs fois l'animation
         drapeau = True
-        Invader1.invaders_move()
+        
+        #Invader.invaders_move(Canevas, window
+
+
 
 
 
@@ -49,12 +50,12 @@ def start() :
 window = Tk()
 window.title('Space Invaders Ju2 version')
 score = 'Score :'
-label_start = Label(window, fg = 'navy', text = score)
+label_start = Label(window, fg = 'navy', text = "Score :")
 label_start.grid()
 
-my_pic = Image.open("images/milky_way.jpg")
-resized = my_pic.resize((1500, 700))
-new_pic = ImageTk.PhotoImage(resized)
+back_pic = Image.open("images/milky_way.jpg")
+resized = back_pic.resize((1530, 700))
+background = ImageTk.PhotoImage(resized)
 
 button_quit = Button (window, text = 'Quit', fg = 'black', command = window.destroy)
 button_quit.grid(row = 1, padx = 3, pady = 3)
@@ -69,21 +70,22 @@ button_new_game = Button (window, text = 'New game', fg ='black')
 button_new_game.grid(row = 2, sticky = NE, padx = 3, pady = 3)
 
 # Création d'un widget Canvas (zone graphique)
-width_canvas = 1500
+width_canvas = 1530
 height_canvas = 700
 Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gray')
 
 # Ajout d'une image de fond
-item = Canevas.create_image(0, 0, anchor=NW, image=new_pic)
+item = Canevas.create_image(0, 0, anchor=NW, image=background)
 print("Image de fond (item",item,")")
 Canevas.grid()
 
-# Création d'un alien 
-Invader1 = Invaders(750, 25, Canevas)
-Invader1.invaders_move(Canevas, window)
+# Création des aliens
+invaders = Invaders(window, Canevas)
+invaders.add_invaders()
+invaders.move_invaders()
 
-#Création du vaisseau/ joueur
-Player = Ship(750 ,625, Canevas)
+# Création du vaisseau/joueur
+Player = Ship(765 ,625, Canevas, window, width_canvas, height_canvas)
 
 Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10)) 
 Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 

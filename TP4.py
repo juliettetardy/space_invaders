@@ -31,7 +31,6 @@ Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gra
 
 # ------------ Création des aliens ------------
 
-
 # Couleurs des anneaux :
 coul_for6 = ["red", "yellow", "blue", "green", "black", "purple"]
 coul_for5 = ["pink", "orange", "brown", "white", "cornflowerblue"]
