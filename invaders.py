@@ -2,9 +2,10 @@ from PIL import Image, ImageTk
 
 drapeau = False
 class Invaders :
-    def __init__(self, window, canevas) :
+    def __init__(self, window, canevas, imgPath) :
         self.window = window
         self.canevas = canevas
+        self.imgPath = imgPath
         self.invaders = []
         self.speed = 5
  
@@ -20,7 +21,7 @@ class Invaders :
                 i = 0
                 while i < 5 :
                     x0, y0 = coord_for5[i][0], coord_for5[i][1]
-                    invader = Invader(x0, y0, self.canevas)
+                    invader = Invader(x0, y0, self.canevas, self.imgPath)
                     self.invaders.append(invader)
                     i += 1
             else : 
@@ -31,14 +32,14 @@ class Invaders :
                 i = 0
                 while i < 4 :
                     x0, y0 = coord_for4[i][0], coord_for4[i][1]
-                    invader = Invader(x0, y0, self.canevas)
+                    invader = Invader(x0, y0, self.canevas, self.imgPath)
                     self.invaders.append(invader)
                     i += 1
             height_aliens += 80
 
     def move_invaders(self) :
         for invader in self.invaders :
-            if invader.get_position()[2] >= 1530 or invader.get_position()[0] <= 0 :
+            if invader.get_position()[0] + 20 >= 1530 or invader.get_position()[0] - 20 <= 0 :
                 self.speed = -self.speed
                 break    
         for invader in self.invaders :
@@ -50,14 +51,13 @@ class Invader :
         self.canevas = canevas
         self.x = x
         self.y = y
-        self.apparence = self.canevas.create_oval(self.x, self.y, self.x + 40, self.y + 40, width = 2, outline = 'black', fill = 'green') 
         self.invader_pic = Image.open(img_path)
         self.invader_pic = self.invader_pic.resize((100,100))
         self.pic = ImageTk.PhotoImage(self.invader_pic)
         self.invader_item = self.canevas.create_image(self.x + 20, self.y + 20, image = self.pic)
 
     def get_position(self) :
-        return self.canevas.coords(self.apparence)
+        return self.canevas.coords(self.invader_item)
 
     def invaders_move(self, speed) :
-        self.canevas.move(self.apparence, speed, 0)
+        self.canevas.move(self.invader_item, speed, 0)

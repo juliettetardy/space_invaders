@@ -49,7 +49,7 @@ print("Image de fond (item",item,")")
 Canevas.grid()
 
 # Création des aliens
-invaders = Invaders(window, Canevas)
+invaders = Invaders(window, Canevas, "images/alien_1.png")
 invaders.add_invaders()
 invaders.move_invaders()
 
