@@ -9,9 +9,13 @@ Fin du code le :
 
 Il reste à faire :
 - Mettre un menu start game avec des règles --> ne pas commencer la partie directement
+- Le menu doit contenir les règles, un 'à propos' et la possibilité de quitter le jeu
 - Faire fonctionner le bouton "recommencer"
 - Faire fonctionner le bouton "pause"
 - Faire apparaître le nombre de vie restantes - Gérer les vies
+- Faire apparaître le score (10 points pour un ennemis abattu, 
+                            25 points si c'est un ennemi en capacité de tirer, 
+                            150 points pour l'ennemi bonus)
 - Faire descendre les aliens
 - Gérer le cas où les aliens sont trop bas 
 - Faire tirer les aliens de manières aléatoires
@@ -36,7 +40,7 @@ def start(drapeau) :
     # Cette fonction lève le drapeau et lance l'animation
     if drapeau == False :       # Nécessaire pour ne pas lancer plusieurs fois l'animation
         drapeau = True
-        #Invader.invaders_move(Canevas, window
+        #Invader.invaders_move(Canevas, window)
 
 
 
