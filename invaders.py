@@ -1,3 +1,5 @@
+from PIL import Image, ImageTk
+
 drapeau = False
 class Invaders :
     def __init__(self, window, canevas) :
@@ -44,11 +46,15 @@ class Invaders :
         self.window.after(20, self.move_invaders)
 
 class Invader :
-    def __init__(self, x, y, canevas) :
+    def __init__(self, x, y, canevas, img_path) :
         self.canevas = canevas
         self.x = x
         self.y = y
         self.apparence = self.canevas.create_oval(self.x, self.y, self.x + 40, self.y + 40, width = 2, outline = 'black', fill = 'green') 
+        self.invader_pic = Image.open(img_path)
+        self.invader_pic = self.invader_pic.resize((100,100))
+        self.pic = ImageTk.PhotoImage(self.invader_pic)
+        self.invader_item = self.canevas.create_image(self.w, self.h, image = self.pic)
 
     def get_position(self) :
         return self.canevas.coords(self.apparence)
