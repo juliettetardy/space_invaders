@@ -96,9 +96,9 @@ Canevas.bind_all("<KeyPress-space>", lambda _: Player.fire_shoot(window))
 
 # Création d'îlots protecteurs
 
-islet1 = Islet(100, 520, 25, Canevas)
-islet2 = Islet(1200, 520, 25, Canevas)
-islet3 = Islet(650, 520, 25, Canevas)
+islet1 = Islet(100, 480, 25, Canevas)
+islet2 = Islet(1200, 480, 25, Canevas)
+islet3 = Islet(650, 480, 25, Canevas)
 
 islet1.multiply_islet()
 islet2.multiply_islet()

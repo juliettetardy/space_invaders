@@ -12,7 +12,7 @@ class Ship:
         self.w = width/2
         self.h = height -70
         self.ship_pic = Image.open(img_path)
-        self.ship_pic = self.ship_pic.resize((130,130))
+        self.ship_pic = self.ship_pic.resize((100,100))
         self.pic = ImageTk.PhotoImage(self.ship_pic)
         self.player_item = self.canevas.create_image(self.w, self.h, image = self.pic)
 
@@ -24,7 +24,7 @@ class Ship:
         
     def fire_shoot(self, window):
         coord = self.canevas.coords(self.player_item)
-        self.shoot = Missile(coord[0]+7, coord[1] - 10, self.canevas, self)
+        self.shoot = Missile(coord[0]+7, coord[1] - 80, self.canevas, self)
         self.shoot.bullet_move(window)
 
 
