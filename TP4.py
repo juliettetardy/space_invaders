@@ -58,9 +58,10 @@ for nmb_lines in range(1,4) :
             x0, y0 = coord_for5[i][0], coord_for5[i][1]
             alien = Canevas.create_oval(x0, y0, x0+40, y0+40, width = 2, outline = 'black', fill = coul_for5[i])
             i += 1
+
     height_aliens += 80
     
-# ------------ Création du vaisseau ------------
+# ------------ Création du vaisseau -----------
 
 # Position initiale du vaisseau
 PosX = width_canvas/2
