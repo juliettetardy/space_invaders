@@ -13,7 +13,7 @@ Il reste à faire :
 - Faire fonctionner le bouton "recommencer"
 - Faire fonctionner le bouton "pause"
 - Faire apparaître le nombre de vie restantes - Gérer les vies
-- Faire apparaître le score (10 points pour un ennemis abattu, 
+- Faire apparaître le score (10 points pour un ennemi abattu, 
                             25 points si c'est un ennemi en capacité de tirer, 
                             150 points pour l'ennemi bonus)
 - Faire descendre les aliens
@@ -25,22 +25,22 @@ Il reste à faire :
 """
 
 # Importation des fichiers nécessaires au fonctionnement du jeu
-from tkinter import Tk, Canvas ,Button ,Label, PhotoImage, NW, NE
+from tkinter import Tk, Canvas ,Button ,Label, NW, NE
 from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
 from islet import Islet
 
 # Fonctions mise en marche et pause de l'animation
-def stop(drapeau) : 
+def stop (drapeau) : 
     # Cette fonction baisse le drapeau et arrête l'animation
     drapeau = False
 
-def start(drapeau) :
+def start (drapeau) :
     # Cette fonction lève le drapeau et lance l'animation
     if drapeau == False :       # Nécessaire pour ne pas lancer plusieurs fois l'animation
         drapeau = True
-        #Invader.invaders_move(Canevas, window)
+        Invaders.move_invaders()
 
 
 
@@ -92,9 +92,9 @@ Canevas.bind_all ("<KeyPress-space>", lambda _: Player.fire_shoot(window))
 
 # Création d'îlots protecteurs
 
-islet1 = Islet(100, 480, 25, Canevas)
-islet2 = Islet(1200, 480, 25, Canevas)
-islet3 = Islet(650, 480, 25, Canevas)
+islet1 = Islet (100, 480, 25, Canevas)
+islet2 = Islet (1200, 480, 25, Canevas)
+islet3 = Islet (650, 480, 25, Canevas)
 
 islet1.multiply_islet()
 islet2.multiply_islet()
