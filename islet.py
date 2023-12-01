@@ -8,7 +8,7 @@ class Islet :
         self.canevas = canevas
 
     def multiply_islet(self):
-        for i in range (7):
+        for i in range (8):
             for j in range (3):
                 self.canevas.create_rectangle(
                     self.x + (i)*self.side,

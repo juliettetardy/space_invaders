@@ -85,7 +85,7 @@ invaders.add_invaders()
 invaders.move_invaders()
 
 # Création du vaisseau/joueur
-Player = Ship(765 ,625, Canevas, window, width_canvas, height_canvas)
+Player = Ship(765, 625, Canevas, window, width_canvas, height_canvas, "images/vaisseau_zinzins.png")
 
 Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10)) 
 Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 
@@ -103,6 +103,7 @@ islet3 = Islet(650, 520, 25, Canevas)
 islet1.multiply_islet()
 islet2.multiply_islet()
 islet3.multiply_islet()
+
 
 # Affichage de la fenêtre
 window.mainloop()
