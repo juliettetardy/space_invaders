@@ -4,18 +4,31 @@ from invaders import Invaders
 from ship import Ship
 
 # Fonctions mise en marche et pause de l'animation
-
-def stop() : 
+def stop(drapeau) : 
     # Cette fonction baisse le drapeau et arrête l'animation
-    global drapeau
     drapeau = False
 
-def start() :
+def start(drapeau) :
     # Cette fonction lève le drapeau et lance l'animation
-    global drapeau
     if drapeau == False :       # Nécessaire pour ne pas lancer plusieurs fois l'animation
         drapeau = True
-        Invader1.invaders_move()
+        
+        Invader.invaders_move()
+
+def canvas_limit(invaders) :
+    print("coucou")
+    if invaders[5].x == 1500 and invaders[-1].x == 1500 :
+        print("1")
+        for bad_guy in invaders : 
+            bad_guy.invaders_move(Canevas, window)
+    elif invaders[0].x == 0 and invaders[11].x == 0 :
+        print("2")
+        for bad_guy in invaders : 
+            bad_guy.invaders_move(Canevas, window)
+    else :
+        print("3")
+        for bad_guy in invaders : 
+            bad_guy.invaders_move(Canevas, window)
 
 # Création de la fenêtre du jeu
 window = Tk()
@@ -50,11 +63,38 @@ item = Canevas.create_image(0, 0, anchor=NW, image=new_pic)
 print("Image de fond (item",item,")")
 Canevas.grid()
 
-# Création d'un alien 
-Invader1 = Invaders(750, 25, Canevas)
-Invader1.invaders_move(Canevas, window)
+# Création des aliens
+bad_guys = []
+height_aliens = 30
+for nmb_lines in range(1,4) :
+    if nmb_lines%2 != 0 :
+        # Coordonnées X,Y des aliens :
+        place_for6 = width_canvas/6 
+        final_place_for6 = place_for6 - 20 - width_canvas/12
+        coord_for6 = [[final_place_for6, height_aliens], [final_place_for6 + place_for6, height_aliens], [final_place_for6 + 2*place_for6, height_aliens], [final_place_for6 + 3*place_for6, height_aliens], [final_place_for6 + 4*place_for6, height_aliens], [final_place_for6 + 5*place_for6, height_aliens]]
+        i = 0
+        while i < 6 :
+            x0, y0 = coord_for6[i][0], coord_for6[i][1]
+            Invader = Invaders(x0, y0, Canevas)
+            bad_guys.append(Invader)
+            i += 1
+    else : 
+        # Coordonnées X,Y des aliens :
+        place_for5 = width_canvas/6
+        final_place_for5 = place_for5 - 20 
+        coord_for5 = [[final_place_for5, height_aliens], [final_place_for5 + place_for5, height_aliens], [final_place_for5 + 2*place_for5, height_aliens], [final_place_for5 + 3*place_for5, height_aliens], [final_place_for5 + 4*place_for5, height_aliens]]
+        i = 0
+        while i < 5 :
+            x0, y0 = coord_for5[i][0], coord_for5[i][1]
+            Invader = Invaders(x0, y0, Canevas)
+            bad_guys.append(Invader)
+            i += 1
+    height_aliens += 80
 
-#Création du vaisseau/ joueur
+window.after(20, lambda: canvas_limit(bad_guys))
+#bad_guys[0].invaders_move(Canevas, window)
+
+# Création du vaisseau/ joueur
 Player = Ship(750 ,625, Canevas)
 
 Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10)) 
