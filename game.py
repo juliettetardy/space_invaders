@@ -2,7 +2,8 @@ from tkinter import Tk, Canvas ,Button ,Label, PhotoImage, NW, NE
 from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
-from missile import Missile
+
+from islet import Islet
 
 
 # Fonctions mise en marche et pause de l'animation
@@ -63,10 +64,16 @@ Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10))
 Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 
 
 #création d'un missile
-"""
-Missile = Missile(Canevas)
-Canevas.bind_all("<KeyPress-Space>", lambda _: Player.missile(Canevas,window)) 
-"""
+Canevas.bind_all("<KeyPress-space>", lambda _: Player.fire_shoot(window)) 
+
+
+# Création d'îlots protecteurs
+
+islet1 = Islet(100,520, 20, Canevas)
+islet1.multiply_islet()
+
+
+
 # Affichage de la fenêtre
 window.mainloop()
 
