@@ -1,3 +1,4 @@
+from missile import Missile
 from PIL import Image, ImageTk
 
 class Ship:
