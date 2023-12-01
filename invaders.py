@@ -1,12 +1,11 @@
 drapeau = False
-
 class Invaders :
     def __init__(self, window, canevas) :
         self.window = window
         self.canevas = canevas
         self.invaders = []
         self.speed = 5
-
+ 
     def add_invaders(self) :
         width_canvas = 1530
         height_aliens = 30

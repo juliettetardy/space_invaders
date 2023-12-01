@@ -54,7 +54,7 @@ invaders.add_invaders()
 invaders.move_invaders()
 
 # Création du vaisseau/joueur
-Player = Ship(765 ,625, Canevas, window, width_canvas, height_canvas)
+Player = Ship(765, 625, Canevas, window, width_canvas, height_canvas, "images/vaisseau_zinzins.png")
 
 Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10)) 
 Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 
@@ -63,6 +63,7 @@ Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10))
 #Coord = Ship.Canevas.coord(Ship.apparence)
 #Missile = Missile(Coord, Canevas, window )
 #Canevas.bind_all("<KeyPress-Space>", lambda _: Player.missile(10)) 
+
 
 # Affichage de la fenêtre
 window.mainloop()
