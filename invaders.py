@@ -59,9 +59,8 @@ class Invaders :
                 break
         for invader in self.invaders :
             invader.invaders_move (self.speed)
-        """
-
         self.window.after (20, self.move_invaders)
+        """
 
 #This means that when you update the y-coordinate of the invader by subtracting 20 from it, the actual position of the invader in the window does not change because the position of the invader's image relative to the window remains the same.
 
