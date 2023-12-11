@@ -39,13 +39,16 @@ class Invaders :
 
     def move_invaders (self) :
         for invader in self.invaders :
-            if invader.get_position()[0] + 20 >= 1530 or invader.get_position()[0] - 20 <= 0 :
-                self.speed = -self.speed
-                break    
+            if invader.get_position() [0] + 20 >= 1530 or invader.get_position() [0] - 20 <= 0 :
+                self.speed = - self.speed
+                break
         for invader in self.invaders :
-            invader.invaders_move (self.speed)
+            if self.invaders[0].get_position() [0] - 20 <= 0 and self.invaders[9].get_position() [0] - 20 <= 0 :
+                invader.invaders_move (self.speed, 1)
+            invader.invaders_move (self.speed, 0)
         self.window.after (20, self.move_invaders)
-        
+
+#This means that when you update the y-coordinate of the invader by subtracting 20 from it, the actual position of the invader in the window does not change because the position of the invader's image relative to the window remains the same.
 
 class Invader :
     def __init__ (self, x, y, canevas, img_path) :
@@ -60,5 +63,8 @@ class Invader :
     def get_position (self) :
         return self.canevas.coords (self.invader_item)
 
-    def invaders_move (self, speed) :
-        self.canevas.move (self.invader_item, speed, 0)
+    def invaders_move (self, speed, moving) :
+        if moving == 0 :
+            self.canevas.move (self.invader_item, speed, 0)
+        elif moving == 1 :
+            self.canevas.move (self.invader_item, speed, 15)
