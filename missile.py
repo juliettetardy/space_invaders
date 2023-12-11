@@ -16,14 +16,3 @@ class Missile :
             for item in to_delete :
                 self.canevas.delete (item)
         window.after (40, lambda : self.bullet_move(window))
-
-    
-
-
-
-        
-
-        
-
-    
-   

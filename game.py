@@ -30,11 +30,8 @@ from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
 from islet import Islet
-import time
 
-
-
-
+            
 # Fonctions mise en marche et pause de l'animation
 def stop (drapeau) : 
     # Cette fonction baisse le drapeau et arrête l'animation
@@ -61,10 +58,10 @@ background = ImageTk.PhotoImage(resized)
 button_quit = Button (window, text = 'Quit', fg = 'black', command = window.destroy)
 button_quit.grid(row = 1, padx = 3, pady = 3)
 
-bouton_start = Button(window, text="Start game", width=9, command = start)
+bouton_start = Button(window, text = "Start game", width = 9, command = start)
 bouton_start.grid(row = 2, sticky = NW, padx = 3, pady = 3)
 
-bouton_stop = Button(window, text="Pause game", width=9, command = stop)
+bouton_stop = Button(window, text = "Pause game", width = 9, command = stop)
 bouton_stop.grid(row = 2, padx = 3, pady = 3)
 
 button_new_game = Button (window, text = 'New game', fg ='black')
@@ -75,8 +72,8 @@ width_canvas = 1530
 height_canvas = 700
 Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gray')
 
-# Ajout d'une image de fond
-item = Canevas.create_image(0, 0, anchor=NW, image=background)
+# Ajout d'une image de fond 
+item = Canevas.create_image(0, 0, anchor = NW, image = background)
 print("Image de fond (item",item,")")
 Canevas.grid()
 
@@ -84,15 +81,16 @@ Canevas.grid()
 invaders = Invaders(window, Canevas, "images/alien_1.png")
 invaders.add_invaders()
 invaders.move_invaders()
+invaders.random_fire(window)
 
 # Création du vaisseau/joueur
 Player = Ship(765, 625, Canevas, window, width_canvas, height_canvas, "images/vaisseau_zinzins.png")
 
-Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10)) 
-Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 
+Canevas.bind_all("<KeyPress-Left>", lambda _ : Player.ship_move(-10)) 
+Canevas.bind_all("<KeyPress-Right>", lambda _ : Player.ship_move(10)) 
 
 # Création d'un missile
-Canevas.bind_all("<KeyPress-space>", lambda _: Player.fire_shoot(window)) 
+Canevas.bind_all("<KeyPress-space>", lambda _ : Player.fire_shoot(window)) 
 
 # Création d'îlots protecteurs
 islet1 = Islet (100, 480, 25, Canevas)
