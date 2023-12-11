@@ -31,6 +31,7 @@ from invaders import Invaders
 from ship import Ship
 from islet import Islet
 
+
             
 # Fonctions mise en marche et pause de l'animation
 def stop (drapeau) : 
@@ -89,7 +90,7 @@ Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10))
 Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 
 
 # Création d'un missile
-Canevas.bind_all("<KeyPress-Space>", lambda _: Player.fire_shoot(window)) 
+Canevas.bind_all("<KeyPress-space>", lambda _: Player.fire_shoot(window)) 
 
 # Création d'îlots protecteurs
 islet1 = Islet (100, 480, 25, Canevas)

@@ -20,11 +20,12 @@ class Ship:
         coord = self.canevas.coords (self.player_item)
         new_position = coord[0] + delta
         if 20 < new_position < 1495 : 
-            left = self.canevas.move (self.player_item, delta, 0)
+            self.canevas.move (self.player_item, delta, 0)
         
     def fire_shoot (self, window) :
-        coord = self.canevas.coords (self.ship)
+        coord = self.canevas.coords(self.player_item)
         self.shoot = Missile(coord[0] + 7, coord[1] - 80, self.canevas, self)
-        self.shoot.bullet_move (window)
+        self.shoot.bullet_move(window)
+    
 
 

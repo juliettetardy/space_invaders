@@ -5,7 +5,7 @@ class Missile :
         self.speed = - 10
         self.ship = ship
         self.canevas = canevas
-        self.apparence = self.canevas.create_rectangle (self.x, self.y, self.x + 5, self.y + 10, width = 5, outline = 'orange', fill = 'yellow')
+        self.apparence = self.canevas.create_rectangle(self.x, self.y, self.x + 5, self.y + 10, width = 5, outline = 'orange', fill = 'yellow')
     
     def bullet_move(self,window) :
         self.canevas.move (self.apparence, 0, self.speed)
