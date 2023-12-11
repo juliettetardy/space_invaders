@@ -15,4 +15,5 @@ class Missile :
             to_delete = contacts + [self.apparence]
             for item in to_delete :
                 self.canevas.delete (item)
+
         window.after (30, lambda : self.bullet_move(window))

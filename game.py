@@ -15,7 +15,6 @@ Il reste à faire :
 - Faire apparaître le score (10 points pour un ennemi abattu, 
                             25 points si c'est un ennemi en capacité de tirer, 
                             150 points pour l'ennemi bonus)
-- Faire descendre les aliens
 - Gerer le cas où les aliens sont trop bas 
 - Faire tirer les aliens de manières aléatoires
 - Creer un ennemis bonus
@@ -30,10 +29,9 @@ from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
 from islet import Islet
-
-            
+  
 # Fonctions mise en marche et pause de l'animation
-def stop (drapeau) : 
+def stop (drapeau, canevas) : 
     # Cette fonction baisse le drapeau et arrête l'animation
     drapeau = False
 
