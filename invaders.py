@@ -45,10 +45,12 @@ class Invaders :
                 self.speed = - self.speed 
 
                 break
+            
         for invader in self.invaders :
-            if self.invaders[0].get_position() [0] - 20 <= 0 and self.invaders[9].get_position() [0] - 20 <= 0 :
+            if self.invaders[0].get_position() [0] - 40 <= 0 or self.invaders[9].get_position() [0] - 40 <= 0 :
                 invader.invaders_move (self.speed, 1)
             invader.invaders_move (self.speed, 0)
+
         self.window.after (20, self.move_invaders)
         
     def random_fire(self, window):
@@ -78,4 +80,4 @@ class Invader :
         if moving == 0 :
             self.canevas.move (self.invader_item, speed, 0)
         elif moving == 1 :
-            self.canevas.move (self.invader_item, speed, 15)
+            self.canevas.move (self.invader_item, speed, 5)
