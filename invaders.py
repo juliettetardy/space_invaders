@@ -45,6 +45,7 @@ class Invaders :
         for invader in self.invaders :
             invader.invaders_move (self.speed)
         self.window.after (20, self.move_invaders)
+        
 
 class Invader :
     def __init__ (self, x, y, canevas, img_path) :

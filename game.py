@@ -31,6 +31,9 @@ from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
 from islet import Islet
+import time
+
+
 
 
 # Fonctions mise en marche et pause de l'animation
@@ -43,7 +46,6 @@ def start (drapeau) :
     if drapeau == False :       # Nécessaire pour ne pas lancer plusieurs fois l'animation
         drapeau = True
         Invaders.move_invaders()
-
 
 
 # Création de la fenêtre du jeu
