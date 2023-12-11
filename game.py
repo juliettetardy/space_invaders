@@ -81,16 +81,15 @@ Canevas.grid()
 invaders = Invaders(window, Canevas, "images/alien_1.png")
 invaders.add_invaders()
 invaders.move_invaders()
-invaders.random_fire(window)
 
 # Création du vaisseau/joueur
 Player = Ship(765, 625, Canevas, window, width_canvas, height_canvas, "images/vaisseau_zinzins.png")
 
-Canevas.bind_all("<KeyPress-Left>", lambda _ : Player.ship_move(-10)) 
-Canevas.bind_all("<KeyPress-Right>", lambda _ : Player.ship_move(10)) 
+Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10)) 
+Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 
 
 # Création d'un missile
-Canevas.bind_all("<KeyPress-space>", lambda _ : Player.fire_shoot(window)) 
+Canevas.bind_all("<KeyPress-Space>", lambda _: Player.fire_shoot(window)) 
 
 # Création d'îlots protecteurs
 islet1 = Islet (100, 480, 25, Canevas)

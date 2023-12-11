@@ -52,15 +52,7 @@ class Invaders :
             invader.invaders_move (self.speed, 0)
 
         self.window.after (20, self.move_invaders)
-        
-    def random_fire(self, window):
-        coord = self.canevas.coords(self.invaders)
-        self.speed = -self.speed
-        should_fire = random.randint(0, 10) # 10% de chances de tirer un missile
-        if should_fire == 0:
-            self.shoot = Missile(coord[0] + 7, coord[1] - 80, self.canevas, self)
-            self.shoot.bullet_move(window)
-
+   
 #This means that when you update the y-coordinate of the invader by subtracting 20 from it, the actual position of the invader in the window does not change because the position of the invader's image relative to the window remains the same.
 
 class Invader :
