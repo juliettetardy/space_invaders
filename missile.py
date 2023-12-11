@@ -11,7 +11,7 @@ class Missile :
         self.canevas.move (self.apparence, 0, self.speed)
         contacts = self.canevas.find_overlapping (*self.canevas.coords(self.apparence))
         contacts = [item for item in contacts if item not in [1, self.apparence]]
-        if contacts:
+        if contacts :
             to_delete = contacts + [self.apparence]
             for item in to_delete :
                 self.canevas.delete (item)

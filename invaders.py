@@ -42,10 +42,12 @@ class Invaders :
             if invader.get_position() [0] + 20 >= 1530 or invader.get_position() [0] - 20 <= 0 :
                 self.speed = - self.speed
                 break
+            
         for invader in self.invaders :
-            if self.invaders[0].get_position() [0] - 40 <= 0 and self.invaders[9].get_position() [0] - 40 <= 0 :
+            if self.invaders[0].get_position() [0] - 40 <= 0 or self.invaders[9].get_position() [0] - 40 <= 0 :
                 invader.invaders_move (self.speed, 1)
             invader.invaders_move (self.speed, 0)
+
         self.window.after (20, self.move_invaders)
 
 #This means that when you update the y-coordinate of the invader by subtracting 20 from it, the actual position of the invader in the window does not change because the position of the invader's image relative to the window remains the same.
