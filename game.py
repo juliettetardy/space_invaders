@@ -31,7 +31,6 @@ from invaders import Invaders
 from ship import Ship
 from islet import Islet
 
-
             
 # Fonctions mise en marche et pause de l'animation
 def stop (drapeau) : 
@@ -86,8 +85,8 @@ invaders.move_invaders()
 # Création du vaisseau/joueur
 Player = Ship(765, 625, Canevas, window, width_canvas, height_canvas, "images/vaisseau_zinzins.png")
 
-Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-10)) 
-Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(10)) 
+Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-15)) 
+Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(15)) 
 
 # Création d'un missile
 Canevas.bind_all("<KeyPress-space>", lambda _: Player.fire_shoot(window)) 

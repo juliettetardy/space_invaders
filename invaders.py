@@ -1,15 +1,36 @@
 
 from PIL import Image, ImageTk
-import random
+
 
 drapeau = False
+
+class Invader :
+    def __init__ (self, x, y, canevas, img_path) :
+        self.canevas = canevas
+        self.x = x
+        self.y = y
+        self.invader_pic = Image.open(img_path)
+        self.invader_pic = self.invader_pic.resize((100,100))
+        self.pic = ImageTk.PhotoImage(self.invader_pic)
+        self.invader_item = self.canevas.create_image(self.x + 20, self.y + 20, image = self.pic)
+
+    def get_position (self) :
+        return self.canevas.coords (self.invader_item)
+
+    def invaders_move (self, speed, moving) :
+        if moving == 0 :
+            self.canevas.move (self.invader_item, speed, 0.4)
+        elif moving == 1 :
+            self.canevas.move (self.invader_item, speed, 0.4)
+
+            
 class Invaders :
     def __init__ (self, window, canevas, imgPath) :
         self.window = window
         self.canevas = canevas
         self.imgPath = imgPath
         self.invaders = []
-        self.speed = 5
+        self.speed = 4
  
     def add_invaders (self) :
         width_canvas = 1530
@@ -23,7 +44,7 @@ class Invaders :
                 i = 0
                 while i < 5 :
                     x0, y0 = coord_for5[i][0], coord_for5[i][1]
-                    invader = Invader (x0, y0, self.canevas, self.imgPath)
+                    invader = Invader(x0, y0, self.canevas, self.imgPath)
                     self.invaders.append (invader)
                     i += 1
             else : 
@@ -43,6 +64,7 @@ class Invaders :
         for invader in self.invaders :
             if invader.get_position() [0] + 20 >= 1530 or invader.get_position() [0] - 20 <= 0 :
                 self.speed = - self.speed 
+                
 
                 break
             
@@ -55,21 +77,3 @@ class Invaders :
    
 #This means that when you update the y-coordinate of the invader by subtracting 20 from it, the actual position of the invader in the window does not change because the position of the invader's image relative to the window remains the same.
 
-class Invader :
-    def __init__ (self, x, y, canevas, img_path) :
-        self.canevas = canevas
-        self.x = x
-        self.y = y
-        self.invader_pic = Image.open(img_path)
-        self.invader_pic = self.invader_pic.resize((100,100))
-        self.pic = ImageTk.PhotoImage(self.invader_pic)
-        self.invader_item = self.canevas.create_image(self.x + 20, self.y + 20, image = self.pic)
-
-    def get_position (self) :
-        return self.canevas.coords (self.invader_item)
-
-    def invaders_move (self, speed, moving) :
-        if moving == 0 :
-            self.canevas.move (self.invader_item, speed, 0)
-        elif moving == 1 :
-            self.canevas.move (self.invader_item, speed, 5)

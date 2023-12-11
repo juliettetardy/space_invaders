@@ -2,7 +2,7 @@ class Missile :
     def __init__ (self, x, y, canevas, ship) :
         self.x = x
         self.y = y
-        self.speed = - 10
+        self.speed = - 15
         self.ship = ship
         self.canevas = canevas
         self.apparence = self.canevas.create_rectangle(self.x, self.y, self.x + 5, self.y + 10, width = 5, outline = 'orange', fill = 'yellow')
@@ -15,4 +15,4 @@ class Missile :
             to_delete = contacts + [self.apparence]
             for item in to_delete :
                 self.canevas.delete (item)
-        window.after (40, lambda : self.bullet_move(window))
+        window.after (30, lambda : self.bullet_move(window))
