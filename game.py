@@ -29,6 +29,12 @@ from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
 from islet import Islet
+
+
+class Game:
+    def __init__(self):
+        self.score = 0
+        self.lives = 3
   
 # Fonctions mise en marche et pause de l'animation
 def stop (drapeau, canevas) : 
