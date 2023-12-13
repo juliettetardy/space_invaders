@@ -8,7 +8,7 @@ Commencé le :
 Fin du code le :
 
 Il reste à faire :
-- Mettre un menu start game avec des règles --> ne pas commencer la partie directement
+- Mettre un menu Start game avec des règles --> ne pas commencer la partie directement
 - Faire fonctionner le bouton "recommencer"
 - Faire fonctionner le bouton "pause"
 - Faire apparaître le nombre de vie restantes - Gérer les vies
@@ -16,8 +16,8 @@ Il reste à faire :
                             25 points si c'est un ennemi en capacité de tirer, 
                             150 points pour l'ennemi bonus)
 - Gerer le cas où les aliens sont trop bas 
-- Faire tirer les aliens de manières aléatoires
-- Créer un ennemis bonus
+- Faire tirer les aliens de manière aléatoire
+- Créer un ennemi bonus
 - 
 """
 
