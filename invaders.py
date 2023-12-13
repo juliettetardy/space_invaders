@@ -19,9 +19,9 @@ class Invader :
 
     def invaders_move (self, speed, moving) :
         if moving == 0 :
-            self.canevas.move (self.invader_item, speed, 0.4)
+            self.canevas.move (self.invader_item, speed, 0)
         elif moving == 1 :
-            self.canevas.move (self.invader_item, speed, 0.4)
+            self.canevas.move (self.invader_item, speed, 5)
 
             
 class Invaders :
@@ -55,7 +55,7 @@ class Invaders :
                 i = 0
                 while i < 4 :
                     x0, y0 = coord_for4[i][0], coord_for4[i][1]
-                    invader = Invader (x0, y0, self.canevas, self.imgPath)
+                    invader = Invader(x0, y0, self.canevas, self.imgPath)
                     self.invaders.append (invader)
                     i += 1
             height_aliens += 80

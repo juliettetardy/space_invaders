@@ -24,7 +24,7 @@ class Ship:
         
     def fire_shoot (self, window) :
         coord = self.canevas.coords(self.player_item)
-        self.shoot = Missile(coord[0] + 7, coord[1] - 80, self.canevas, self)
+        self.shoot = Missile(coord[0] + 7, coord[1] - 80, self.canevas, self, 0)
         self.shoot.bullet_move(window)
     
 
