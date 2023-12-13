@@ -20,6 +20,8 @@ class Invader :
             self.canevas.move (self.invader_item, speed, 0)
         elif moving == 1 :
             self.canevas.move (self.invader_item, speed, 5)
+        elif moving == 2 :
+            self.canevas.move (self.invader_item, speed, 4.5)
 
 class Invaders :
     def __init__ (self, window, canevas, imgPath) :
@@ -62,8 +64,14 @@ class Invaders :
             if invader.get_position() [0] + 20 >= 1530 or invader.get_position() [0] - 20 <= 0 :
                 self.speed = - self.speed 
                 break
-            
-        for invader in self.invaders :
+
+        for invader in self.invaders[:5] :
+            if self.invaders [4].get_position() [0] + 40 >= 1530 and self.invaders [-1].get_position() [0] + 40 >= 1530 :
+                invader.invaders_move (self.speed, 2)
+            else :
+                invader.invaders_move (self.speed, 0)
+
+        for invader in self.invaders[5:] :
             if self.invaders [4].get_position() [0] + 40 >= 1530 and self.invaders [-1].get_position() [0] + 40 >= 1530 :
                 invader.invaders_move (self.speed, 1)
             else :
