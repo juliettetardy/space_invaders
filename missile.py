@@ -14,9 +14,10 @@ class Missile :
         contacts = [item for item in contacts if item not in [1, self.apparence]]
         if contacts :
             to_delete = contacts + [self.apparence]
+            self.score += 10
             for item in to_delete :
                 self.canevas.delete (item)
-                self.score += 10
+            
 
         window.after (30, lambda : self.bullet_move(window))
 

@@ -29,92 +29,93 @@ from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
 from islet import Islet
-from missile import Missile
 
-# Fonctions mise en marche et pause de l'animation
-def stop (drapeau, canevas) : 
-    # Cette fonction baisse le drapeau et arrête l'animation
-    drapeau = False
+class Game :
+    def __init__ (self) :
+        self.window = Tk()
+        self.window.title('Space Invaders Ju2 version')
+        self.score = 'Score :' 
+        self.label_start = Label(self.window, fg = 'navy', text = "Score :")
+        self.label_start.grid()
+        self.back_pic = Image.open("images/milky_way.jpg")
+        self.resized = self.back_pic.resize((1530, 700))
+        self.background = ImageTk.PhotoImage(self.resized)
+               
+        self.width_canvas = 1530
+        self.height_canvas = 700
+        self.Canevas = Canvas(self.window, width = self.width_canvas, height = self.height_canvas, bg = 'gray')
+        self.create_widgets(self.window)
+        self.figure(self.window, self.Canevas)
+        
 
-def start (drapeau) :
-    # Cette fonction lève le drapeau et lance l'animation
-    if drapeau == False :       # Nécessaire pour ne pas lancer plusieurs fois l'animation
-        drapeau = True
-        Invaders.move_invaders()
+ 
+    # Fonctions mise en marche et pause de l'animation
+    def stop (self) : 
+        # Cette fonction baisse le drapeau et arrête l'animation
+        self.drapeau = False
 
-# Création fenêtre avant que le jeu ne démarre 
+    def start (self) :
+        # Cette fonction lève le drapeau et lance l'animation
+        if self.drapeau == False :       # Nécessaire pour ne pas lancer plusieurs fois l'animation
+            self.drapeau = True
+            Invaders.move_invaders()
 
+    def create_widgets(self, window):
 
-window = Tk()
-window.title('Space Invaders Ju2 version')
-score = 'Score :' 
-label_start = Label(window, fg = 'navy', text = "Score :")
+        button_quit = Button (window, text = 'Quit', fg = 'black', command = self.window.destroy)
+        button_quit.grid(row = 1, padx = 3, pady = 3)
 
+        bouton_start = Button(window, text = "Start game", width = 9, command = self.start)
+        bouton_start.grid(row = 2, sticky = NW, padx = 3, pady = 3)
 
-def update_score_label(self):
-    score = Missile.get_score(self)
-    label_start = Label(window, fg = 'navy')
-    label_start.config(text = "Score : " + str(score))
-    window.after(100, update_score_label)
+        bouton_stop = Button(window, text = "Pause game", width = 9, command = self.stop)
+        bouton_stop.grid(row = 2, padx = 3, pady = 3)
 
-label_start.grid()
-
-back_pic = Image.open("images/milky_way.jpg")
-resized = back_pic.resize((1530, 700))
-background = ImageTk.PhotoImage(resized)
-
-button_quit = Button (window, text = 'Quit', fg = 'black', command = window.destroy)
-button_quit.grid(row = 1, padx = 3, pady = 3)
-
-bouton_start = Button(window, text = "Start game", width = 9, command = start)
-bouton_start.grid(row = 2, sticky = NW, padx = 3, pady = 3)
-
-bouton_stop = Button(window, text = "Pause game", width = 9, command = stop)
-bouton_stop.grid(row = 2, padx = 3, pady = 3)
-
-button_new_game = Button (window, text = 'New game', fg ='black')
-button_new_game.grid(row = 2, sticky = NE, padx = 3, pady = 3)
-
-# Création d'un widget Canvas (zone graphique)
-width_canvas = 1530
-height_canvas = 700
-Canevas = Canvas(window, width = width_canvas, height = height_canvas, bg = 'gray')
-
-# Ajout d'une image de fond 
-item = Canevas.create_image(0, 0, anchor = NW, image = background)
-print("Image de fond (item",item,")")
-Canevas.grid()
-
-# Création des aliens
-invaders = Invaders(window, Canevas, "images/alien_1.png")
-invaders.add_invaders()
-invaders.move_invaders()
-
-# Création du vaisseau/joueur
-Player = Ship(765, 625, Canevas, window, width_canvas, height_canvas, "images/vaisseau_zinzins.png")
-
-Canevas.bind_all("<KeyPress-Left>", lambda _: Player.ship_move(-15)) 
-Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(15)) 
-
-# Création d'un missile
-Canevas.bind_all("<KeyPress-space>", lambda _: Player.fire_shoot(window)) 
+        button_new_game = Button (window, text = 'New game', fg ='black')
+        button_new_game.grid(row = 2, sticky = NE, padx = 3, pady = 3)
 
 
-# Création d'îlots protecteurs
-islet1 = Islet (100, 480, 25, Canevas)
-islet2 = Islet (1200, 480, 25, Canevas)
-islet3 = Islet (650, 480, 25, Canevas)
+        # Ajout d'une image de fond 
+        self.item = self.Canevas.create_image(0, 0, anchor = NW, image = self.background)
+        print("Image de fond (item",self.item,")")
+        self.Canevas.grid()
 
-islet1.multiply_islet()
-islet2.multiply_islet()
-islet3.multiply_islet()
+    def figure(self,window, Canevas):
+
+        # Création des aliens
+        self.invaders = Invaders(window, Canevas, "images/alien_1.png")
+        self.invaders.add_invaders()
+        self.invaders.move_invaders()
+
+        # Création du vaisseau/joueur
+        self.Player = Ship(765, 625, Canevas, window, self.width_canvas, self.height_canvas, "images/vaisseau_zinzins.png")
+
+        self.Canevas.bind_all("<KeyPress-Left>", lambda _: self.Player.ship_move(-15)) 
+        self.Canevas.bind_all("<KeyPress-Right>", lambda _: self.Player.ship_move(15)) 
+
+        # Création d'un missile
+        self.Canevas.bind_all("<KeyPress-space>", lambda _: self.Player.fire_shoot(window)) 
 
 
-update_score_label()
+        # Création d'îlots protecteurs
+        self.islet1 = Islet (100, 480, 25, Canevas)
+        self.islet2 = Islet (1200, 480, 25, Canevas)
+        self.islet3 = Islet (650, 480, 25, Canevas)
 
-# Affichage de la fenêtre
-window.mainloop()
+        self.islet1.multiply_islet()
+        self.islet2.multiply_islet()
+        self.islet3.multiply_islet()
 
+
+if __name__ == "__main__":
+    app = Game()
+    app.window.mainloop()
+
+root = Tk()
+root.geometry('200x100')  
+btn = Button(root, text="Créer une nouvelle fenêtre", command = create)
+btn.pack(pady = 10) 
+root.mainloop()
 
 
 
