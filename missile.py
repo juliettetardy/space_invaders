@@ -20,6 +20,5 @@ class Missile :
 
         window.after (30, lambda : self.bullet_move(window))
 
-
     def get_score(self):
         return self.score

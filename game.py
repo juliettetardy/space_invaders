@@ -17,14 +17,12 @@ Il reste à faire :
                             150 points pour l'ennemi bonus)
 - Gerer le cas où les aliens sont trop bas 
 - Faire tirer les aliens de manières aléatoires
-- Creer un ennemis bonus
-- Transformer les formes par des images
+- Créer un ennemis bonus
 - 
-
 """
 
 # Importation des fichiers nécessaires au fonctionnement du jeu
-from tkinter import Tk, Canvas ,Button ,Label, NW, NE
+from tkinter import Tk, Canvas, Button, Label, NW, NE
 from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
@@ -43,13 +41,10 @@ def start (drapeau) :
         Invaders.move_invaders()
 
 # Création fenêtre avant que le jeu ne démarre 
-
-
 window = Tk()
 window.title('Space Invaders Ju2 version')
 score = 'Score :' 
 label_start = Label(window, fg = 'navy', text = "Score :")
-
 
 def update_score_label(self):
     score = Missile.get_score(self)
@@ -99,7 +94,6 @@ Canevas.bind_all("<KeyPress-Right>", lambda _: Player.ship_move(15))
 # Création d'un missile
 Canevas.bind_all("<KeyPress-space>", lambda _: Player.fire_shoot(window)) 
 
-
 # Création d'îlots protecteurs
 islet1 = Islet (100, 480, 25, Canevas)
 islet2 = Islet (1200, 480, 25, Canevas)
@@ -109,14 +103,10 @@ islet1.multiply_islet()
 islet2.multiply_islet()
 islet3.multiply_islet()
 
-
-update_score_label()
+#update_score_label()
 
 # Affichage de la fenêtre
 window.mainloop()
-
-
-
 
 
 

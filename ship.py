@@ -27,5 +27,3 @@ class Ship:
         self.shoot = Missile(coord[0] + 7, coord[1] - 80, self.canevas, self, 0)
         self.shoot.bullet_move(window)
     
-
-
