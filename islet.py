@@ -14,5 +14,3 @@ class Islet :
                     self.x + self.side + (i)*self.side, 
                     self.y + self.side + (j)*self.side ,
                     width = 1, outline = 'black', fill = 'gray' )
-        
-    

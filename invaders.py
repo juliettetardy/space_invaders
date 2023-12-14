@@ -1,6 +1,4 @@
-
 from PIL import Image, ImageTk
-
 
 drapeau = False
 
@@ -22,7 +20,6 @@ class Invader :
             self.canevas.move (self.invader_item, speed, 0)
         elif moving == 1 :
             self.canevas.move (self.invader_item, speed, 5)
-
             
 class Invaders :
     def __init__ (self, window, canevas, imgPath) :
@@ -64,7 +61,6 @@ class Invaders :
         for invader in self.invaders :
             if invader.get_position() [0] + 20 >= 1530 or invader.get_position() [0] - 20 <= 0 :
                 self.speed = - self.speed 
-        
                 break
             
         for invader in self.invaders :

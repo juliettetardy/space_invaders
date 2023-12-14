@@ -17,14 +17,12 @@ Il reste à faire :
                             150 points pour l'ennemi bonus)
 - Gerer le cas où les aliens sont trop bas 
 - Faire tirer les aliens de manières aléatoires
-- Creer un ennemis bonus
-- Transformer les formes par des images
+- Créer un ennemis bonus
 - 
-
 """
 
 # Importation des fichiers nécessaires au fonctionnement du jeu
-from tkinter import Tk, Canvas ,Button ,Label, NW, NE
+from tkinter import Tk, Canvas, Button, Label, NW, NE
 from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
@@ -111,11 +109,7 @@ if __name__ == "__main__":
     app = Game()
     app.window.mainloop()
 
-root = Tk()
-root.geometry('200x100')  
-btn = Button(root, text="Créer une nouvelle fenêtre", command = create)
-btn.pack(pady = 10) 
-root.mainloop()
+
 
 
 
