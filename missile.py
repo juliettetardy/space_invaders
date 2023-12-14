@@ -6,11 +6,11 @@ class Missile :
         self.score = score 
         self.ship = ship
         self.canevas = canevas
-        self.apparence = self.canevas.create_rectangle(self.x, self.y, self.x + 5, self.y + 10, width = 5, outline = 'orange', fill = 'yellow')
+        self.apparence = self.canevas.create_rectangle (self.x, self.y, self.x + 5, self.y + 10, width = 5, outline = 'orange', fill = 'yellow')
     
-    def bullet_move(self,window) :
+    def bullet_move (self, window) :
         self.canevas.move (self.apparence, 0, self.speed)
-        contacts = self.canevas.find_overlapping (*self.canevas.coords(self.apparence))
+        contacts = self.canevas.find_overlapping (*self.canevas.coords (self.apparence))
         contacts = [item for item in contacts if item not in [1, self.apparence]]
         if contacts :
             to_delete = contacts + [self.apparence]
@@ -21,5 +21,5 @@ class Missile :
 
         window.after (30, lambda : self.bullet_move(window))
 
-    def get_score(self):
+    def get_score (self) :
         return self.score
