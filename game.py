@@ -35,6 +35,9 @@ class Game :
         self.score = 'Score :' 
         self.label_start = Label(self.window, fg = 'navy', text = "Score :")
         self.label_start.grid()
+        self.life = 'Vie :'
+        self.label_life = Label(self.window, fg = 'navy', text = "Score :")
+        self.label_life.grid()
         self.back_pic = Image.open("images/milky_way.jpg")
         self.resized = self.back_pic.resize((1530, 700))
         self.background = ImageTk.PhotoImage(self.resized)
@@ -45,8 +48,6 @@ class Game :
         self.create_widgets(self.window)
         self.figure(self.window, self.Canevas)
         
-
- 
     # Fonctions mise en marche et pause de l'animation
     def stop (self) : 
         # Cette fonction baisse le drapeau et arrête l'animation
@@ -104,15 +105,7 @@ class Game :
         self.islet2.multiply_islet()
         self.islet3.multiply_islet()
 
-
+# petit essai par ici
 if __name__ == "__main__":
     app = Game()
     app.window.mainloop()
-
-
-
-
-
-
-
-
