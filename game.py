@@ -47,7 +47,7 @@ class Game :
         self.Canevas = Canvas (self.window, width = self.width_canvas, height = self.height_canvas, bg = 'gray')
         self.create_widgets (self.window)
         self.figure (self.window, self.Canevas)
-        
+       
     # Fonctions mise en marche et pause de l'animation
     def stop (self) : 
         # Cette fonction baisse le drapeau et arrête l'animation
@@ -73,7 +73,7 @@ class Game :
 
         # Ajout d'une image de fond 
         self.item = self.Canevas.create_image(0, 0, anchor = NW, image = self.background)
-        print("Image de fond (item",self.item,")")
+        print(self.item)
         self.Canevas.grid()
 
     def figure (self, window, Canevas) :
