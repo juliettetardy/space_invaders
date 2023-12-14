@@ -31,22 +31,23 @@ from islet import Islet
 class Game :
     def __init__ (self) :
         self.window = Tk()
-        self.window.title('Space Invaders Ju2 version')
+        self.window.title ('Space Invaders Ju2 version')
         self.score = 'Score :' 
-        self.label_start = Label(self.window, fg = 'navy', text = "Score :")
-        self.label_start.grid()
+        self.label_start = Label (self.window, fg = 'navy', text = "Score :")
+        self.label_start.grid  (row = 1, column = 2, padx = 3, pady = 3)
+        self.life = 'Vie :'
+        self.label_life = Label (self.window, fg = 'navy', text = "Vie :")
+        self.label_life.grid (row = 1, column = 1, padx = 3, pady = 3)
         self.back_pic = Image.open("images/milky_way.jpg")
-        self.resized = self.back_pic.resize((1530, 700))
+        self.resized = self.back_pic.resize ((1530, 700))
         self.background = ImageTk.PhotoImage(self.resized)
                
         self.width_canvas = 1530
         self.height_canvas = 700
-        self.Canevas = Canvas(self.window, width = self.width_canvas, height = self.height_canvas, bg = 'gray')
-        self.create_widgets(self.window)
-        self.figure(self.window, self.Canevas)
+        self.Canevas = Canvas (self.window, width = self.width_canvas, height = self.height_canvas, bg = 'gray')
+        self.create_widgets (self.window)
+        self.figure (self.window, self.Canevas)
         
-
- 
     # Fonctions mise en marche et pause de l'animation
     def stop (self) : 
         # Cette fonction baisse le drapeau et arrête l'animation
@@ -57,28 +58,25 @@ class Game :
         app = Game()
         app.window.mainloop()
 
-    def create_widgets(self, window):
-
+    def create_widgets (self, window) :
         button_quit = Button (window, text = 'Quit', fg = 'black', command = self.window.destroy)
-        button_quit.grid(row = 1, padx = 3, pady = 3)
+        button_quit.grid (row = 2, padx = 3, pady = 3)
 
-        bouton_start = Button(window, text = "Start game", width = 9, command = self.start)
-        bouton_start.grid(row = 2, sticky = NW, padx = 3, pady = 3)
+        bouton_start = Button (window, text = "Start game", width = 9, command = self.start)
+        bouton_start.grid (row = 3, sticky = NW, padx = 3, pady = 3)
 
-        bouton_stop = Button(window, text = "Pause game", width = 9, command = self.stop)
-        bouton_stop.grid(row = 2, padx = 3, pady = 3)
+        bouton_stop = Button (window, text = "Pause game", width = 9, command = self.stop)
+        bouton_stop.grid (row = 3, padx = 3, pady = 3)
 
         button_new_game = Button (window, text = 'New game', fg ='black')
-        button_new_game.grid(row = 2, sticky = NE, padx = 3, pady = 3)
-
+        button_new_game.grid (row = 3, sticky = NE, padx = 3, pady = 3)
 
         # Ajout d'une image de fond 
         self.item = self.Canevas.create_image(0, 0, anchor = NW, image = self.background)
         print("Image de fond (item",self.item,")")
         self.Canevas.grid()
 
-    def figure(self,window, Canevas):
-
+    def figure (self, window, Canevas) :
         # Création des aliens
         self.invaders = Invaders(window, Canevas, "images/alien_1.png")
         self.invaders.add_invaders()
@@ -103,7 +101,7 @@ class Game :
         self.islet2.multiply_islet()
         self.islet3.multiply_islet()
 
-
+# petit essai par ici
 if __name__ == "__main__":
     app = Game()
     app.window.mainloop()
