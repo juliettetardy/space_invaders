@@ -52,11 +52,10 @@ class Game :
         # Cette fonction baisse le drapeau et arrête l'animation
         self.drapeau = False
 
-    def start (self) :
+    def start () :
         # Cette fonction lève le drapeau et lance l'animation
-        if self.drapeau == False :       # Nécessaire pour ne pas lancer plusieurs fois l'animation
-            self.drapeau = True
-            Invaders.move_invaders()
+        app = Game()
+        app.window.mainloop()
 
     def create_widgets(self, window):
 
@@ -108,6 +107,7 @@ class Game :
 if __name__ == "__main__":
     app = Game()
     app.window.mainloop()
+
 
 
 
