@@ -47,21 +47,17 @@ class Game :
         self.back_pic = Image.open("images/milky_way.jpg")
         self.resized = self.back_pic.resize ((1530, 700))
         self.background = ImageTk.PhotoImage(self.resized)
-        self.back_img = self.Canevas.create_image (0, 0, anchor = NW, image = self.background)
     
     def get_window (self) :
         return self.window
     
     def get_canevas (self) :
         return self.Canevas
-    
-    def get_background_img (self) :
-        return self.back_img
 
     def new_game (self) :
         self.Canevas.delete ('all') 
         self.create_widgets (self.window)
-        self.figure (self.window, self.Canevas)
+        self.create_figures (self.window, self.Canevas)
    
     def create_widgets (self, window) :
         button_quit = Button (window, text = 'Quit', fg = 'black', command = self.window.destroy)
@@ -74,9 +70,10 @@ class Game :
         button_new_game.grid (row = 2, padx = 3, pady = 3)
 
         # Ajout d'une image de fond 
-         
+        self.Canevas.create_image (0, 0, anchor = NW, image = self.background)
+        self.Canevas.grid()
 
-    def figure (self, window, Canevas) :
+    def create_figures (self, window, Canevas) :
         # Création des aliens
         self.invaders = Invaders(window, Canevas, "images/alien_1.png")
         self.invaders.add_invaders()

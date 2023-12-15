@@ -5,10 +5,7 @@ go = Game()
 window = go.get_window()
 canevas = go.get_canevas()
 
-img = go.get_background_img()
-canevas.grid() 
-
 go.create_widgets (window)
-go.figure (window, canevas)
+go.create_figures (window, canevas)
 
 window.mainloop()
