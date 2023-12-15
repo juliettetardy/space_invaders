@@ -1,5 +1,5 @@
 from PIL import Image, ImageTk
-from missile import Missile
+from missile import Missile_I
 
 class Invader :
     def __init__ (self, x, y, canevas, img_path) :
@@ -80,5 +80,5 @@ class Invaders :
         for invader in self.invaders :
             coord = invader.get_position()
             if len (coord) == 2 :
-                shot = Missile (coord[0] - 5, coord[1] + 40, self.canevas, invader)
+                shot = Missile_I (coord[0] - 5, coord[1] + 40, self.canevas, invader)
                 shot.bullet_invaders (window, self.invaders)

@@ -1,4 +1,4 @@
-from missile import Missile
+from missile import Missile_A
 from PIL import Image, ImageTk
 
 class Ship:
@@ -24,7 +24,7 @@ class Ship:
     def fire_shoot (self, window) :
         coord = self.canevas.coords(self.player_item)
         if len (coord) == 2 :
-            shot = Missile (coord[0] + 7, coord[1] - 80, self.canevas, self)
+            shot = Missile_A (coord[0] + 7, coord[1] - 80, self.canevas, self)
             shot.bullet_ship (window)
 
     def get_score (self) :
