@@ -10,15 +10,16 @@ class Missile :
     
     def bullet_move (self, window) :
         self.canevas.move (self.apparence, 0, self.speed)
-        contacts = self.canevas.find_overlapping (*self.canevas.coords (self.apparence))
-        contacts = [item for item in contacts if item not in [1, self.apparence]]
-        if contacts :
-            to_delete = contacts + [self.apparence]
-            self.score += 10
-            for item in to_delete :
-                self.canevas.delete (item)
-            
-
+        coord = self.canevas.coords (self.apparence)
+        if len(coord) == 4 :
+            contacts = self.canevas.find_overlapping (*coord)
+            if coord[3] < 0 :
+                self.canevas.delete (self.apparence)
+            for item in contacts :
+                if item != self.apparence and item not in [1, self.apparence] :
+                    self.canevas.delete(self.apparence)
+                    self.canevas.delete(item)
+                    self.score += 10
         window.after (30, lambda : self.bullet_move(window))
 
     def get_score (self) :

@@ -1,4 +1,5 @@
 from PIL import Image, ImageTk
+from missile import Missile
 
 drapeau = False
 
@@ -61,23 +62,31 @@ class Invaders :
 
     def move_invaders (self) :
         for invader in self.invaders :
-            if invader.get_position() [0] + 20 >= 1530 or invader.get_position() [0] - 20 <= 0 :
-                self.speed = - self.speed 
-                break
+            coord = invader.get_position()
+            if len(coord) == 2 :
+                if invader.get_position() [0] + 20 >= 1530 or invader.get_position() [0] - 20 <= 0 :
+                    self.speed = - self.speed 
+                    break
 
         for invader in self.invaders[:5] :
-            if self.invaders [4].get_position() [0] + 40 >= 1530 and self.invaders [-1].get_position() [0] + 40 >= 1530 :
-                invader.invaders_move (self.speed, 2)
-            else :
-                invader.invaders_move (self.speed, 0)
+            coord = invader.get_position()
+            if len(coord) == 2 :
+                if self.invaders [4].get_position() [0] + 40 >= 1530 and self.invaders [-1].get_position() [0] + 40 >= 1530 :
+                    invader.invaders_move (self.speed, 2)
+                else :
+                    invader.invaders_move (self.speed, 0)
 
         for invader in self.invaders[5:] :
-            if self.invaders [4].get_position() [0] + 40 >= 1530 and self.invaders [-1].get_position() [0] + 40 >= 1530 :
-                invader.invaders_move (self.speed, 1)
-            else :
-                invader.invaders_move (self.speed, 0)
+            coord = invader.get_position()
+            if len(coord) == 2 :
+                if self.invaders [4].get_position() [0] + 40 >= 1530 and self.invaders [-1].get_position() [0] + 40 >= 1530 :
+                    invader.invaders_move (self.speed, 1)
+                else :
+                    invader.invaders_move (self.speed, 0)
 
         self.window.after(20, self.move_invaders)
+
+        
 
 #This means that when you update the y-coordinate of the invader by subtracting 20 from it, the actual position of the invader in the window does not change because the position of the invader's image relative to the window remains the same.
 
