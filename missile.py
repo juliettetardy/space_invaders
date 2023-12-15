@@ -1,4 +1,4 @@
-from random import randint
+#from game import Game
 
 class Missile_A :
     def __init__ (self, x, y, canevas, ship) :
@@ -20,7 +20,7 @@ class Missile_A :
                 if item not in [1, self.ship_shot] :     # 1 correspond à l'image de fond
                     self.canevas.delete (self.ship_shot)
                     self.canevas.delete (item)
-                    #self.ship.add_score(10)
+                    #self.ship.add_score (10, Game().update_score())
         window.after (30, lambda : self.bullet_ship(window))
 
 class Missile_I :
@@ -45,6 +45,6 @@ class Missile_I :
                 if item not in dont_want :
                     self.canevas.delete (self.invader_shot)
                     self.canevas.delete (item)
-                    #self.ship.add_score(-30)
+                    #self.ship.add_score (-30, Game().update_score())
 
         window.after (30, lambda : self.bullet_invaders (window, invaders))

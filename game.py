@@ -10,11 +10,11 @@ class Game :
         self.window = Tk()
         self.window.title ('Space Invaders Ju2 version')
 
-        self.score = 'Score :' 
-        self.label_start = Label (self.window, fg = 'navy', text = "Score :")
-        self.label_start.grid  (row = 1, sticky = W, padx = 3, pady = 3)
-        self.life = 'Nombre de vie(s) :'
-        self.label_life = Label (self.window, fg = 'navy', text = "Vie :")
+        self.score = 0
+        self.label_score = Label (self.window, fg = 'blue', text = "Score : ")
+        self.label_score.grid  (row = 1, sticky = W, padx = 3, pady = 3)
+        self.life = 3
+        self.label_life = Label (self.window, fg = 'blue', text = "Nombre de vie(s) : ")
         self.label_life.grid (row = 2, sticky = W, padx = 3, pady = 3)
 
         self.width_canvas = 1530
@@ -30,6 +30,9 @@ class Game :
     
     def get_canevas (self) :
         return self.Canevas
+    
+    def update_score (self) :
+        return self.label_score
 
     def new_game (self) :
         self.Canevas.delete ('all') 
@@ -37,13 +40,13 @@ class Game :
         self.create_figures (self.window, self.Canevas)
    
     def create_widgets (self, window) :
-        button_quit = Button (window, text = 'Quit', fg = 'black', command = self.window.destroy)
+        button_quit = Button (window, text = 'Quit', fg = 'navy', command = self.window.destroy)
         button_quit.grid (row = 2, padx = 3, pady = 3)
 
         #bouton_start = Button (window, text = "Start game", width = 9, command = lambda : self.start)
         #bouton_start.grid (row = 3, sticky = NW, padx = 3, pady = 3)
 
-        button_new_game = Button (window, text = 'New game', fg ='black', command = self.new_game)
+        button_new_game = Button (window, text = 'New game', fg ='navy', command = self.new_game)
         button_new_game.grid (row = 1, padx = 3, pady = 3)
 
         # Ajout d'une image de fond 
@@ -57,7 +60,7 @@ class Game :
         self.invaders.move_invaders()
 
         # Création du vaisseau/joueur
-        self.Player = Ship(765, 625, Canevas, window, self.width_canvas, self.height_canvas, "images/vaisseau_zinzins.png")
+        self.Player = Ship (765, 625, window, Canevas, self.width_canvas, self.height_canvas, "images/vaisseau_zinzins.png")
         self.Canevas.bind_all("<KeyPress-Left>", lambda _: self.Player.ship_move(-15)) 
         self.Canevas.bind_all("<KeyPress-Right>", lambda _: self.Player.ship_move(15)) 
 
