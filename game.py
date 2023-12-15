@@ -22,7 +22,7 @@ Il reste à faire :
 """
 
 # Importation des fichiers nécessaires au fonctionnement du jeu
-from tkinter import Tk, Canvas, Button, Label, NW, NE
+from tkinter import Tk, Canvas, Button, Label, Frame, NW, NE
 from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
@@ -50,9 +50,11 @@ class Game :
 
     
     def new_game(self) :
-        pass
+        self.Canevas.delete('all') 
+        self.create_widgets(self.window)
+        self.figure (self.window, self.Canevas)
         
-
+   
     def create_widgets (self, window) :
         button_quit = Button (window, text = 'Quit', fg = 'black', command = self.window.destroy)
         button_quit.grid (row = 2, padx = 3, pady = 3)
@@ -73,6 +75,7 @@ class Game :
         self.invaders = Invaders(window, Canevas, "images/alien_1.png")
         self.invaders.add_invaders()
         self.invaders.move_invaders()
+               
 
         # Création du vaisseau/joueur
         self.Player = Ship(765, 625, Canevas, window, self.width_canvas, self.height_canvas, "images/vaisseau_zinzins.png")
