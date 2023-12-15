@@ -8,7 +8,6 @@ class Ship:
         self.y = y
         self.window = window
         self.canevas = canevas
-        
         self.w = width / 2
         self.h = height - 70
         self.ship_pic = Image.open (img_path)
@@ -19,13 +18,23 @@ class Ship:
     def ship_move (self, delta) :
         coord = self.canevas.coords (self.player_item)
         new_position = coord[0] + delta
-        if 20 < new_position < 1495 : 
+        if 40 < new_position < 1490 : 
             self.canevas.move (self.player_item, delta, 0)
         
     def fire_shoot (self, window) :
         coord = self.canevas.coords(self.player_item)
-        self.shoot = Missile(coord[0] + 7, coord[1] - 80, self.canevas, self, 0)
-        self.shoot.bullet_move(window)
+        if len (coord) == 2 :
+            shot = Missile (coord[0] + 7, coord[1] - 80, self.canevas, self)
+            shot.bullet_ship (window)
+
+    def get_score (self) :
+        score = 0
+        return score
+
+    def add_score (self, score_to_add) :
+        score = 0
+        return score
+
 
     
     

@@ -48,12 +48,10 @@ class Game :
         self.create_widgets (self.window)
         self.figure (self.window, self.Canevas)
 
-    
-    def new_game(self) :
-        self.Canevas.delete('all') 
-        self.create_widgets(self.window)
+    def new_game (self) :
+        self.Canevas.delete ('all') 
+        self.create_widgets (self.window)
         self.figure (self.window, self.Canevas)
-        
    
     def create_widgets (self, window) :
         button_quit = Button (window, text = 'Quit', fg = 'black', command = self.window.destroy)
@@ -67,7 +65,7 @@ class Game :
 
         # Ajout d'une image de fond 
         self.item = self.Canevas.create_image(0, 0, anchor = NW, image = self.background)
-        print(self.item)
+        #print(self.item)
         self.Canevas.grid()
 
     def figure (self, window, Canevas) :
@@ -75,7 +73,6 @@ class Game :
         self.invaders = Invaders(window, Canevas, "images/alien_1.png")
         self.invaders.add_invaders()
         self.invaders.move_invaders()
-               
 
         # Création du vaisseau/joueur
         self.Player = Ship(765, 625, Canevas, window, self.width_canvas, self.height_canvas, "images/vaisseau_zinzins.png")
@@ -85,6 +82,8 @@ class Game :
         # Création d'un missile
         self.Canevas.bind_all("<KeyPress-space>", lambda _: self.Player.fire_shoot(window)) 
 
+        # Création des missiles pour les aliens
+        self.Canevas.bind_all("<KeyPress-Control_R>", lambda _: self.invaders.shoot_ship(window)) 
 
         # Création d'îlots protecteurs
         self.islet1 = Islet (100, 480, 25, Canevas)

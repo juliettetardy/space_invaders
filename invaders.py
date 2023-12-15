@@ -1,8 +1,6 @@
 from PIL import Image, ImageTk
 from missile import Missile
 
-drapeau = False
-
 class Invader :
     def __init__ (self, x, y, canevas, img_path) :
         self.canevas = canevas
@@ -16,10 +14,10 @@ class Invader :
     def get_position (self) :
         return self.canevas.coords (self.invader_item)
 
-    def invaders_move (self, speed, moving) :
-        if moving == 0 :
+    def invaders_move (self, speed, moving_down) :
+        if moving_down == 0 :
             self.canevas.move (self.invader_item, speed, 0)
-        elif moving == 1 :
+        elif moving_down == 1 :
             self.canevas.move (self.invader_item, speed, 2)
 
 class Invaders :
@@ -28,7 +26,7 @@ class Invaders :
         self.canevas = canevas
         self.imgPath = imgPath
         self.invaders = []
-        self.speed = - 4
+        self.speed = 4
  
     def add_invaders (self) :
         width_canvas = 1530
@@ -61,22 +59,26 @@ class Invaders :
     def move_invaders (self) :
         for invader in self.invaders :
             coord = invader.get_position()
-            if len(coord) == 2 :
-                if invader.get_position() [0] + 20 >= 1530 or invader.get_position() [0] - 20 <= 0 :
+            if len (coord) == 2 :
+                if coord [0] + 20 >= 1530 or coord [0] - 20 <= 0 :
                     self.speed = - self.speed 
                     break
 
         for invader in self.invaders :
             coord = invader.get_position()
-            if len(coord) == 2 :
-                if self.invaders [4].get_position() [0] + 40 >= 1530 and self.invaders [-1].get_position() [0] + 40 >= 1530 :
-                    invader.invaders_move (self.speed, 1)
+            if len (coord) == 2 :
+                if coord [0] - 40 <= 0 :
+                    for invader in self.invaders :
+                        invader.invaders_move (self.speed, 1)
+                    break
                 else :
                     invader.invaders_move (self.speed, 0)
 
         self.window.after(20, self.move_invaders)
 
-        
-
-#This means that when you update the y-coordinate of the invader by subtracting 20 from it, the actual position of the invader in the window does not change because the position of the invader's image relative to the window remains the same.
-
+    def shoot_ship (self, window) :
+        for invader in self.invaders :
+            coord = invader.get_position()
+            if len (coord) == 2 :
+                shot = Missile(coord[0] - 5, coord[1] + 40, self.canevas, invader)
+                shot.bullet_invaders(window, self.invaders)
