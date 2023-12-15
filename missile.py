@@ -17,7 +17,7 @@ class Missile :
             if coord [3] < 0 :
                 self.canevas.delete (self.ship_shot)
             for item in contacts :
-                if item != self.ship_shot and item not in [1, self.ship_shot] :
+                if item not in [1, self.ship_shot] :   # 1 correspond à l'image de fond sur le canva
                     self.canevas.delete(self.ship_shot)
                     self.canevas.delete(item)
                     #self.ship.add_score(10)
@@ -31,9 +31,8 @@ class Missile :
             if coord [3] < 0 :
                 self.canevas.delete (self.invader_shot)
             for item in contacts :
-                if item != self.invader_shot and item not in [1, self.invader_shot] :
-                    invaders_list = list (range (2, 16))
-                    if item not in invaders_list :
+                invaders_list = list (range (2, 16))
+                if item not in [1, self.invader_shot, invaders_list] :  # 1 correspond à l'image de fond sur le canva
                         self.canevas.delete(self.invader_shot)
                         self.canevas.delete(item)
                         #self.ship.add_score(-30)
