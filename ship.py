@@ -3,11 +3,12 @@ from PIL import Image, ImageTk
 
 class Ship:
     # Création du vaisseau, de sa position initiale et de son image
-    def __init__ (self, x, y, canevas, window, width, height, img_path) : 
+    def __init__ (self, x, y, window, canevas, width, height, img_path) : 
         self.x = x
         self.y = y
         self.window = window
         self.canevas = canevas
+        self.score = 0
         self.w = width / 2
         self.h = height - 70
         self.ship_pic = Image.open (img_path)
@@ -27,14 +28,12 @@ class Ship:
             shot = Missile_A (coord[0] + 7, coord[1] - 80, self.canevas, self)
             shot.bullet_ship (window)
 
-    def get_score (self) :
-        score = 0
-        return score
+    def get_score (self, score_label) :
+        # Mettre à jour le texte du label avec la nouvelle valeur du score
+        score_label.config (text = f"Score : {self.score}")
 
-    def add_score (self, score_to_add) :
-        score = 0
-        return score
+    def add_score (self, score_to_add, score_label) :
+        # Fonction pour ajouter au score
+        self.score += score_to_add
+        self.get_score (score_label)
 
-
-    
-    
