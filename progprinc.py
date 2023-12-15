@@ -18,7 +18,7 @@ Il reste à faire :
 - Créer un ennemi bonus
 - 
 """
-
+ 
 from game import Game
 
 go = Game()

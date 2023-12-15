@@ -65,15 +65,15 @@ class Game :
         self.Canevas.bind_all("<KeyPress-space>", lambda _: self.Player.fire_shoot(window)) 
 
         # Création des missiles pour les aliens
-        self.Canevas.bind_all("<KeyPress-Control_R>", lambda _: self.invaders.shoot_ship(window)) 
+        self.invaders.shoot_ship(window)
 
         # Création d'îlots protecteurs
         self.islet1 = Islet (100, 480, 25, Canevas)
         self.islet2 = Islet (1200, 480, 25, Canevas)
         self.islet3 = Islet (650, 480, 25, Canevas)
 
-        #self.islet1.multiply_islet()
-        #self.islet2.multiply_islet()
-        #self.islet3.multiply_islet()
+        self.islet1.multiply_islet()
+        self.islet2.multiply_islet()
+        self.islet3.multiply_islet()
 
 

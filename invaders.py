@@ -1,5 +1,6 @@
 from PIL import Image, ImageTk
 from missile import Missile_I
+from random import randint
 
 class Invader :
     def __init__ (self, x, y, canevas, img_path) :
@@ -78,7 +79,10 @@ class Invaders :
 
     def shoot_ship (self, window) :
         for invader in self.invaders :
-            coord = invader.get_position()
-            if len (coord) == 2 :
-                shot = Missile_I (coord[0] - 5, coord[1] + 40, self.canevas, invader)
-                shot.bullet_invaders (window, self.invaders)
+            can_move = randint(0, 250)
+            if can_move == 250 :
+                coord = invader.get_position()
+                if len (coord) == 2 :
+                    shot = Missile_I (coord[0] - 5, coord[1] + 40, self.canevas, invader)
+                    shot.bullet_invaders (window, self.invaders)
+        window.after (30, lambda : self.shoot_ship (window))
