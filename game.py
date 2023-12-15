@@ -76,16 +76,4 @@ class Game :
         self.islet2.multiply_islet()
         self.islet3.multiply_islet()
 
-# petit essai par ici
-"""if __name__ == "__main__":
-    app = Game()
-    app.window.mainloop()"""
-
-
-
-
-
-
-
-
 
