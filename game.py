@@ -50,7 +50,8 @@ class Game :
         button_new_game.grid (row = 1, padx = 3, pady = 3)
 
         # Ajout d'une image de fond 
-        self.Canevas.create_image (0, 0, anchor = NW, image = self.background)
+        item = self.Canevas.create_image (0, 0, anchor = NW, image = self.background)
+        print(item)
         self.Canevas.grid()
 
     def create_figures (self, window, Canevas) :
