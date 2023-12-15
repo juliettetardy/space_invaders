@@ -22,7 +22,7 @@ Il reste à faire :
 """
 
 # Importation des fichiers nécessaires au fonctionnement du jeu
-from tkinter import Tk, Canvas, Button, Label, Frame, NW, S
+from tkinter import Tk, Canvas, Button, Label, Frame, NW, W
 from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
@@ -35,10 +35,10 @@ class Game :
 
         self.score = 'Score :' 
         self.label_start = Label (self.window, fg = 'navy', text = "Score :")
-        self.label_start.grid  (row = 1, padx = 5, pady = 3)
+        self.label_start.grid  (row = 1, sticky = W, padx = 3, pady = 3)
         self.life = 'Nombre de vie(s) :'
         self.label_life = Label (self.window, fg = 'navy', text = "Vie :")
-        self.label_life.grid (row = 1, padx = 3, pady = 3)
+        self.label_life.grid (row = 2, sticky = W, padx = 3, pady = 3)
 
         self.width_canvas = 1530
         self.height_canvas = 700
@@ -61,13 +61,13 @@ class Game :
    
     def create_widgets (self, window) :
         button_quit = Button (window, text = 'Quit', fg = 'black', command = self.window.destroy)
-        button_quit.grid (row = 3, padx = 3, pady = 3)
+        button_quit.grid (row = 2, padx = 3, pady = 3)
 
         #bouton_start = Button (window, text = "Start game", width = 9, command = lambda : self.start)
         #bouton_start.grid (row = 3, sticky = NW, padx = 3, pady = 3)
 
         button_new_game = Button (window, text = 'New game', fg ='black', command = self.new_game)
-        button_new_game.grid (row = 2, padx = 3, pady = 3)
+        button_new_game.grid (row = 1, padx = 3, pady = 3)
 
         # Ajout d'une image de fond 
         self.Canevas.create_image (0, 0, anchor = NW, image = self.background)
