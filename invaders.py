@@ -22,9 +22,10 @@ class Invader :
             self.canevas.move (self.invader_item, speed, 2)
 
 class Invaders :
-    def __init__ (self, window, canevas, imgPath) :
+    def __init__ (self, window, canevas, ship, imgPath) :
         self.window = window
         self.canevas = canevas
+        self.ship = ship
         self.imgPath = imgPath
         self.invaders = []
         self.speed = 4
@@ -83,7 +84,7 @@ class Invaders :
             if can_move == 250 :
                 coord = invader.get_position()
                 if len (coord) == 2 :
-                    shot = Missile_I (coord[0] - 5, coord[1] + 40, self.window, self.canevas, invader)
+                    shot = Missile_I (coord[0] - 5, coord[1] + 40, self.window, self.canevas, self.ship)
                     shot.bullet_invaders (back_img, self.invaders)
-                    
+
         self.window.after (30, lambda : self.shoot_ship (back_img))
