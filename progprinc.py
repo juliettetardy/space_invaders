@@ -12,7 +12,6 @@ Il reste à faire :
 - Faire apparaître le score (10 points pour un ennemi abattu, 
                             20 points si c'est un ennemi en capacité de tirer, 
                             150 points pour l'ennemi bonus)
-- Gérer les aliens à supprimer lorsque le vaisseau n'a plus de vie
 - Créer un ennemi bonus
 - 
 """

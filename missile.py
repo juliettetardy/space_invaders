@@ -55,13 +55,16 @@ class Missile_I :
                             self.ship.add_score (-20)
                             self.ship.lost_life()
                             if self.ship.life == 0 :
-                                self.canevas.delete (item)
+                                self.suppr_figures (invaders)
                                 messagebox.showinfo ("Perdu", "Vous n'avez plus de vies")
-                                for invader in self.invaders :
-                                    self.canevas.delete (invader.invader_item)
                                 break
                         else :
                             self.canevas.delete (self.invader_shot)
                             self.canevas.delete (item)
 
         self.window.after (30, lambda : self.bullet_invaders (back_img, invaders))
+
+    def suppr_figures (self, invaders) :
+        for invader in invaders :
+            self.canevas.delete (invader.invader_item)
+        self.canevas.delete (self.ship.player_item)

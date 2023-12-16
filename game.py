@@ -43,7 +43,7 @@ class Game :
 
         img = self.create_widgets()
         self.create_figures (img)
-   
+
     def create_widgets (self) :
         # Création du bouton pour détruire la fenêtre
         button_quit = Button (self.window, text = 'Quit', fg = 'navy', command = self.window.destroy)
@@ -71,6 +71,8 @@ class Game :
         islet1.multiply_islet()
         islet2.multiply_islet()
         islet3.multiply_islet()
+
+        islets = [islet1, islet2, islet3]
 
         # Création du vaisseau/joueur
         Player = Ship (765, 625, self.window, self.Canevas, self.width_canvas, self.height_canvas, "images/vaisseau_zinzins.png")

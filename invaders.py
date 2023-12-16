@@ -87,21 +87,16 @@ class Invaders :
                 contacts = self.canevas.find_overlapping (*coord)
                 if coord [1] > 620 :
                     self.canevas.delete (invader.invader_item)
-                    messagebox.showinfo ("Perdu", "Vous n'avez pas réussi à détruire tous les aliens")
                     self.ship.life = 0
-                    self.canevas.delete (self.ship.player_item)
-                    for invader in self.invaders :
-                        self.canevas.delete (invader.invader_item)
+                    self.suppr_figures()
+                    messagebox.showinfo ("Perdu", "Vous n'avez pas réussi à détruire tous les aliens")
                     break
                 else : 
                     for item in contacts :
                         if item == self.ship.player_item :
-                            self.canevas.delete (item)
-                            self.canevas.delete (invader.invader_item)
                             self.ship.life = 0
+                            self.suppr_figures()
                             messagebox.showinfo ("Perdu", "Vous avez été touché par un alien")
-                            for invader in self.invaders :
-                                self.canevas.delete (invader.invader_item)
                             break
 
         self.window.after(20, self.move_invaders)
@@ -116,3 +111,8 @@ class Invaders :
                     shot.bullet_invaders (back_img, self.invaders)
 
         self.window.after (30, lambda : self.shoot_ship (back_img))
+
+    def suppr_figures (self) :
+        for invader in self.invaders :
+            self.canevas.delete (invader.invader_item)
+        self.canevas.delete (self.ship.player_item)
