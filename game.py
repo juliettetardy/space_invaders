@@ -62,6 +62,16 @@ class Game :
         return item
 
     def create_figures (self, back_img = 1) :
+        
+        # Création d'îlots protecteurs
+        islet1 = Islet (100, 480, 25, self.Canevas)
+        islet2 = Islet (650, 480, 25, self.Canevas)
+        islet3 = Islet (1200, 480, 25, self.Canevas)
+        
+        islet1.multiply_islet()
+        islet2.multiply_islet()
+        islet3.multiply_islet()
+
         # Création du vaisseau/joueur
         Player = Ship (765, 625, self.window, self.Canevas, self.width_canvas, self.height_canvas, "images/vaisseau_zinzins.png")
         self.Canevas.bind_all ("<KeyPress-Left>", lambda _: Player.ship_move (-15)) 
@@ -77,15 +87,6 @@ class Game :
 
         # Création des missiles pour les aliens
         invaders.shoot_ship (back_img)
-
-        # Création d'îlots protecteurs
-        islet1 = Islet (100, 480, 25, self.Canevas)
-        islet2 = Islet (1200, 480, 25, self.Canevas)
-        islet3 = Islet (650, 480, 25, self.Canevas)
-
-        islet1.multiply_islet()
-        islet2.multiply_islet()
-        islet3.multiply_islet()
 
         # Modification du score et de la vie
         Player.var_score = self.score

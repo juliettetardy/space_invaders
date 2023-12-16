@@ -57,6 +57,9 @@ class Missile_I :
                             if self.ship.life == 0 :
                                 self.canevas.delete (item)
                                 messagebox.showinfo ("Perdu", "Vous n'avez plus de vies")
+                                for invader in self.invaders :
+                                    self.canevas.delete (invader.invader_item)
+                                break
                         else :
                             self.canevas.delete (self.invader_shot)
                             self.canevas.delete (item)
