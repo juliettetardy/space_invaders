@@ -13,8 +13,7 @@ Il reste à faire :
 - Faire apparaître le score (10 points pour un ennemi abattu, 
                             25 points si c'est un ennemi en capacité de tirer, 
                             150 points pour l'ennemi bonus)
-- Gérer le cas où les aliens sont trop bas 
-- Faire tirer les aliens de manière aléatoire
+- Gérer le cas où les aliens sont trop bas ou lorque qu'ils tapent le vaisseau
 - Créer un ennemi bonus
 - 
 """
