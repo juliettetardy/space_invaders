@@ -22,9 +22,8 @@ from game import Game
 
 go = Game()
 window = go.get_window()
-canevas = go.get_canevas()
 
-go.create_widgets (window)
-go.create_figures (window, canevas)
+go.create_widgets()
+go.create_figures()
 
 window.mainloop()
