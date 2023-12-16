@@ -77,12 +77,13 @@ class Invaders :
 
         self.window.after(20, self.move_invaders)
 
-    def shoot_ship (self, window) :
+    def shoot_ship (self, back_img) :
         for invader in self.invaders :
             can_move = randint(0, 250)
             if can_move == 250 :
                 coord = invader.get_position()
                 if len (coord) == 2 :
-                    shot = Missile_I (coord[0] - 5, coord[1] + 40, self.canevas, invader)
-                    shot.bullet_invaders (window)
-        window.after (30, lambda : self.shoot_ship (window))
+                    shot = Missile_I (coord[0] - 5, coord[1] + 40, self.window, self.canevas, invader)
+                    shot.bullet_invaders (back_img, self.invaders)
+                    
+        self.window.after (30, lambda : self.shoot_ship (back_img))

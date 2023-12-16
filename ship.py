@@ -22,11 +22,11 @@ class Ship:
         if 40 < new_position < 1490 : 
             self.canevas.move (self.player_item, delta, 0)
         
-    def fire_shoot (self, window) :
-        coord = self.canevas.coords(self.player_item)
+    def fire_shoot (self, back_img) :
+        coord = self.canevas.coords (self.player_item)
         if len (coord) == 2 :
-            shot = Missile_S (coord[0] + 7, coord[1] - 80, self.canevas, self)
-            shot.bullet_ship (window)
+            shot = Missile_S (coord[0] + 7, coord[1] - 80, self.window, self.canevas, self)
+            shot.bullet_ship (back_img)
 
     def get_score (self, score_label) :
         # Mettre à jour le texte du label avec la nouvelle valeur du score
