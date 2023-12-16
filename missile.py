@@ -47,8 +47,11 @@ class Missile_I :
                     list_invaders.append (inv)
                 dont_want = dont_want + list_invaders   # liste qui rassemble tous les éléments que l'on ne veut pas supprimer
                 if item not in dont_want :
-                    self.canevas.delete (self.invader_shot)
-                    self.canevas.delete (item)
-                    self.ship.add_score (-30)
+                    if item == self.ship.player_item :
+                        self.canevas.delete (self.invader_shot)
+                        self.ship.add_score (-30)
+                    else :
+                        self.canevas.delete (self.invader_shot)
+                        self.canevas.delete (item)
 
         self.window.after (30, lambda : self.bullet_invaders (back_img, invaders))

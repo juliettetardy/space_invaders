@@ -17,16 +17,16 @@ class Game :
         self.score = IntVar()
         self.score.set (0)
         self.label_score = Label (self.window, fg = 'navy', textvariable = self.score)
-        self.label_score.grid (row = 1, sticky = W, padx = 3, pady = 3)
-        self.score_text = Label (self.window, fg = 'navy', text = "Score :")
-        self.score_text.grid (row = 1, sticky = W, padx = 3, pady = 3)
+        self.label_score.grid (row = 2, sticky = W, pady = 3)
+        self.score_text = Label (self.window, fg = 'navy', text = "Score : ")
+        self.score_text.grid (row = 1, sticky = W, pady = 3)
 
         self.life_nb = IntVar()
         self.life_nb.set (3)
         self.label_life = Label (self.window, fg = 'navy', textvariable = self.life_nb)
-        self.label_life.grid (row = 2, sticky = W, padx = 3, pady = 3)
-        self.life_text = Label (self.window, fg = 'navy', text = "Vie :")
-        self.life_text.grid (row = 2, sticky = W, padx = 3, pady = 3)
+        self.label_life.grid (row = 4, sticky = W, padx = 3, pady = 3)
+        self.life_text = Label (self.window, fg = 'navy', text = "Nombre de vie(s) : ")
+        self.life_text.grid (row = 3, sticky = W, padx = 3, pady = 3)
 
         self.back_pic = Image.open ("images/milky_way.jpg")
         self.resized = self.back_pic.resize ((1530, 700))
@@ -35,9 +35,6 @@ class Game :
     def get_window (self) :
         return self.window
 
-    def update_score (self) :
-        return self.label_score
-    
     def new_game (self) :
         self.Canevas.delete ('all') 
         
