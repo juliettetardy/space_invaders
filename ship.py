@@ -38,16 +38,12 @@ class Ship:
     def get_score (self) :
         # Mettre à jour le texte du label avec la nouvelle valeur du score
         return self.score
-        
-        ##score_label.config (text = f"Score : {self.score}")
 
     def add_score (self, score_to_add) :
         # Fonction pour ajouter au score
         self.score += score_to_add
         if self.var_score :
             self.var_score.set (self.score)
-        
-        ##self.get_score (score_label)
 
     def lost_life (self) :
         if self.life == 1 :

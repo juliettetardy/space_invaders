@@ -47,14 +47,14 @@ class Game :
     def create_widgets (self) :
         # Création du bouton pour détruire la fenêtre
         button_quit = Button (self.window, text = 'Quit', fg = 'navy', command = self.window.destroy)
-        button_quit.grid (row = 2, padx = 3, pady = 3)
+        button_quit.grid (row = 4, padx = 3, pady = 3)
 
         #bouton_start = Button (window, text = "Start game", width = 9, command = lambda : self.start)
         #bouton_start.grid (row = 3, sticky = NW, padx = 3, pady = 3)
 
         # Crétion du bouton pour relancer une nouvelle partie
         button_new_game = Button (self.window, text = 'New game', fg ='navy', command = self.new_game)
-        button_new_game.grid (row = 1, padx = 3, pady = 3)
+        button_new_game.grid (row = 2, padx = 3, pady = 3)
 
         # Ajout d'une image de fond 
         item = self.Canevas.create_image (0, 0, anchor = NW, image = self.background)
