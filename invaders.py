@@ -84,5 +84,5 @@ class Invaders :
                 coord = invader.get_position()
                 if len (coord) == 2 :
                     shot = Missile_I (coord[0] - 5, coord[1] + 40, self.canevas, invader)
-                    shot.bullet_invaders (window, self.invaders)
+                    shot.bullet_invaders (window)
         window.after (30, lambda : self.shoot_ship (window))

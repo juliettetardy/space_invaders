@@ -1,28 +1,5 @@
-"""
-Tardy Juliette et Curie Justine
-
-TP4 CS-DEV - Réalisation d'un jeu type "Space Invaders" sous Tkinter
-Utilisation de la programmation orientée objet.
-
-Commencé le :
-Fin du code le :
-
-Il reste à faire :
-- Mettre un menu Start game avec des règles --> ne pas commencer la partie directement
-- Faire fonctionner le bouton "recommencer"
-- Faire fonctionner le bouton "pause"
-- Faire apparaître le nombre de vie restantes - Gérer les vies
-- Faire apparaître le score (10 points pour un ennemi abattu, 
-                            25 points si c'est un ennemi en capacité de tirer, 
-                            150 points pour l'ennemi bonus)
-- Gerer le cas où les aliens sont trop bas 
-- Faire tirer les aliens de manière aléatoire
-- Créer un ennemi bonus
-- 
-"""
-
 # Importation des fichiers nécessaires au fonctionnement du jeu
-from tkinter import Tk, Canvas, Button, Label, NW, NE
+from tkinter import Tk, Canvas, Button, Label, NW, W
 from PIL import Image, ImageTk
 from invaders import Invaders
 from ship import Ship
@@ -32,15 +9,22 @@ class Game :
     def __init__ (self) :
         self.window = Tk()
         self.window.title ('Space Invaders Ju2 version')
-        self.score = 'Score :' 
+
+        self.width_canvas = 1530
+        self.height_canvas = 700
+        self.Canevas = Canvas (self.window, width = self.width_canvas, height = self.height_canvas, bg = 'gray')
+
+        self.score = 0
         self.label_start = Label (self.window, fg = 'navy', text = "Score :")
-        self.label_start.grid  (row = 1, column = 2, padx = 3, pady = 3)
-        self.life = 'Vie :'
+        self.label_start.grid (row = 1, sticky = W, padx = 3, pady = 3)
+
+        self.life = 3
         self.label_life = Label (self.window, fg = 'navy', text = "Vie :")
-        self.label_life.grid (row = 1, column = 1, padx = 3, pady = 3)
-        self.back_pic = Image.open("images/milky_way.jpg")
+        self.label_life.grid (row = 2, sticky = W, padx = 3, pady = 3)
+
+        self.back_pic = Image.open ("images/milky_way.jpg")
         self.resized = self.back_pic.resize ((1530, 700))
-        self.background = ImageTk.PhotoImage(self.resized)
+        self.background = ImageTk.PhotoImage (self.resized)
     
     def get_window (self) :
         return self.window
@@ -50,18 +34,11 @@ class Game :
     
     def update_score (self) :
         return self.label_score
-
-    def new_game (self) :
-        self.Canevas.delete ('all') 
-        self.create_widgets (self.window)
-        self.figure (self.window, self.Canevas)
-
     
     def new_game(self) :
-        self.Canevas.delete('all') 
-        self.create_widgets(self.window)
-        self.figure (self.window, self.Canevas)
-        
+        self.Canevas.delete ('all') 
+        self.create_widgets (self.window)
+        self.create_figures (self.window, self.Canevas)
    
     def create_widgets (self, window) :
         button_quit = Button (window, text = 'Quit', fg = 'navy', command = self.window.destroy)
@@ -74,24 +51,26 @@ class Game :
         button_new_game.grid (row = 1, padx = 3, pady = 3)
 
         # Ajout d'une image de fond 
-        self.Canevas.create_image (0, 0, anchor = NW, image = self.background)
+        item = self.Canevas.create_image (0, 0, anchor = NW, image = self.background)
+        print (item)
         self.Canevas.grid()
 
-    def figure (self, window, Canevas) :
+    def create_figures (self, window, Canevas) :
         # Création des aliens
-        self.invaders = Invaders(window, Canevas, "images/alien_1.png")
+        self.invaders = Invaders (window, Canevas, "images/alien_1.png")
         self.invaders.add_invaders()
         self.invaders.move_invaders()
-               
 
         # Création du vaisseau/joueur
         self.Player = Ship (765, 625, window, Canevas, self.width_canvas, self.height_canvas, "images/vaisseau_zinzins.png")
-        self.Canevas.bind_all("<KeyPress-Left>", lambda _: self.Player.ship_move(-15)) 
-        self.Canevas.bind_all("<KeyPress-Right>", lambda _: self.Player.ship_move(15)) 
+        self.Canevas.bind_all ("<KeyPress-Left>", lambda _: self.Player.ship_move(-15)) 
+        self.Canevas.bind_all ("<KeyPress-Right>", lambda _: self.Player.ship_move(15)) 
 
         # Création d'un missile
-        self.Canevas.bind_all("<KeyPress-space>", lambda _: self.Player.fire_shoot(window)) 
+        self.Canevas.bind_all ("<KeyPress-space>", lambda _: self.Player.fire_shoot(window)) 
 
+        # Création des missiles pour les aliens
+        self.invaders.shoot_ship (window)
 
         # Création d'îlots protecteurs
         self.islet1 = Islet (100, 480, 25, Canevas)
@@ -101,17 +80,6 @@ class Game :
         self.islet1.multiply_islet()
         self.islet2.multiply_islet()
         self.islet3.multiply_islet()
-
-# petit essai par ici
-if __name__ == "__main__":
-    app = Game()
-    app.window.mainloop()
-
-
-
-
-
-
 
 
 
