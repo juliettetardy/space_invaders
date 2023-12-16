@@ -37,6 +37,8 @@ class Game :
     
     def new_game(self) :
         self.Canevas.delete ('all') 
+        item2 = self.Canevas.create_image (0, 0, anchor = NW, image = self.background)
+        print (item2)
         self.create_widgets (self.window)
         self.create_figures (self.window, self.Canevas)
    
