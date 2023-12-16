@@ -1,6 +1,5 @@
 from missile import Missile_S
 from PIL import Image, ImageTk
-from tkinter import messagebox
 
 class Ship:
     # Création du vaisseau, de sa position initiale et de son image
@@ -38,23 +37,18 @@ class Ship:
     def get_score (self) :
         # Mettre à jour le texte du label avec la nouvelle valeur du score
         return self.score
-        
-        ##score_label.config (text = f"Score : {self.score}")
 
     def add_score (self, score_to_add) :
         # Fonction pour ajouter au score
         self.score += score_to_add
         if self.var_score :
             self.var_score.set (self.score)
-        
-        ##self.get_score (score_label)
 
     def lost_life (self) :
         if self.life == 1 :
             self.life -= 1
             if self.var_life :
                 self.var_life.set (self.life)
-            messagebox.showinfo ("Perdu", "Vous n'avez plus de vies")
             return 1
         else :
             self.life -= 1

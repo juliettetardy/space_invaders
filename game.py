@@ -43,18 +43,18 @@ class Game :
 
         img = self.create_widgets()
         self.create_figures (img)
-   
+
     def create_widgets (self) :
         # Création du bouton pour détruire la fenêtre
         button_quit = Button (self.window, text = 'Quit', fg = 'navy', command = self.window.destroy)
-        button_quit.grid (row = 2, padx = 3, pady = 3)
+        button_quit.grid (row = 4, padx = 3, pady = 3)
 
         #bouton_start = Button (window, text = "Start game", width = 9, command = lambda : self.start)
         #bouton_start.grid (row = 3, sticky = NW, padx = 3, pady = 3)
 
         # Crétion du bouton pour relancer une nouvelle partie
         button_new_game = Button (self.window, text = 'New game', fg ='navy', command = self.new_game)
-        button_new_game.grid (row = 1, padx = 3, pady = 3)
+        button_new_game.grid (row = 2, padx = 3, pady = 3)
 
         # Ajout d'une image de fond 
         item = self.Canevas.create_image (0, 0, anchor = NW, image = self.background)
@@ -62,6 +62,18 @@ class Game :
         return item
 
     def create_figures (self, back_img = 1) :
+        
+        # Création d'îlots protecteurs
+        islet1 = Islet (100, 480, 25, self.Canevas)
+        islet2 = Islet (650, 480, 25, self.Canevas)
+        islet3 = Islet (1200, 480, 25, self.Canevas)
+        
+        islet1.multiply_islet()
+        islet2.multiply_islet()
+        islet3.multiply_islet()
+
+        islets = [islet1, islet2, islet3]
+
         # Création du vaisseau/joueur
         Player = Ship (765, 625, self.window, self.Canevas, self.width_canvas, self.height_canvas, "images/vaisseau_zinzins.png")
         self.Canevas.bind_all ("<KeyPress-Left>", lambda _: Player.ship_move (-15)) 
@@ -77,15 +89,6 @@ class Game :
 
         # Création des missiles pour les aliens
         invaders.shoot_ship (back_img)
-
-        # Création d'îlots protecteurs
-        islet1 = Islet (100, 480, 25, self.Canevas)
-        islet2 = Islet (1200, 480, 25, self.Canevas)
-        islet3 = Islet (650, 480, 25, self.Canevas)
-
-        islet1.multiply_islet()
-        islet2.multiply_islet()
-        islet3.multiply_islet()
 
         # Modification du score et de la vie
         Player.var_score = self.score

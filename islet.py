@@ -6,11 +6,14 @@ class Islet :
         self.canevas = canevas
 
     def multiply_islet (self) :
+        list_cubes = []
         for i in range (8) :
             for j in range (3) :
-                self.canevas.create_rectangle (
+                cube = self.canevas.create_rectangle (
                     self.x + (i)*self.side,
                     self.y + (j)*self.side, 
                     self.x + self.side + (i)*self.side, 
                     self.y + self.side + (j)*self.side ,
                     width = 1, outline = 'black', fill = 'gray' )
+                list_cubes.append (cube)
+        return list_cubes

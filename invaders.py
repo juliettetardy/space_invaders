@@ -1,6 +1,7 @@
 from PIL import Image, ImageTk
 from missile import Missile_I
 from random import randint
+from tkinter import messagebox
 
 class Invader :
     def __init__ (self, x, y, canevas, img_path) :
@@ -59,6 +60,7 @@ class Invaders :
             height_aliens += 80
 
     def move_invaders (self) :
+        # permet d'inverser la vitesse de tous les aliens si celui le plus à droit ou le plus à gauche touche le bord du canva
         for invader in self.invaders :
             coord = invader.get_position()
             if len (coord) == 2 :
@@ -66,6 +68,7 @@ class Invaders :
                     self.speed = - self.speed 
                     break
 
+        # permet de faire descendre les aliens si ils tapents à gauche
         for invader in self.invaders :
             coord = invader.get_position()
             if len (coord) == 2 :
@@ -75,6 +78,26 @@ class Invaders :
                     break
                 else :
                     invader.invaders_move (self.speed, 0)
+
+        # permet de tuer le vaisseau/arrêter la partie si les aliens touchent le vaisseau ou le bas du canva
+        for invader in self.invaders :
+            coords = invader.get_position()
+            if len (coords) == 2 :
+                coord = [coords [0] - 20, coords [1] - 20] + coords
+                contacts = self.canevas.find_overlapping (*coord)
+                if coord [1] > 620 :
+                    self.canevas.delete (invader.invader_item)
+                    self.ship.life = 0
+                    self.suppr_figures()
+                    messagebox.showinfo ("Perdu", "Vous n'avez pas réussi à détruire tous les aliens")
+                    break
+                else : 
+                    for item in contacts :
+                        if item == self.ship.player_item :
+                            self.ship.life = 0
+                            self.suppr_figures()
+                            messagebox.showinfo ("Perdu", "Vous avez été touché par un alien")
+                            break
 
         self.window.after(20, self.move_invaders)
 
@@ -88,3 +111,8 @@ class Invaders :
                     shot.bullet_invaders (back_img, self.invaders)
 
         self.window.after (30, lambda : self.shoot_ship (back_img))
+
+    def suppr_figures (self) :
+        for invader in self.invaders :
+            self.canevas.delete (invader.invader_item)
+        self.canevas.delete (self.ship.player_item)
