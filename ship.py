@@ -1,6 +1,5 @@
 from missile import Missile_S
 from PIL import Image, ImageTk
-from tkinter import messagebox
 
 class Ship:
     # Création du vaisseau, de sa position initiale et de son image
@@ -50,7 +49,6 @@ class Ship:
             self.life -= 1
             if self.var_life :
                 self.var_life.set (self.life)
-            messagebox.showinfo ("Perdu", "Vous n'avez plus de vies")
             return 1
         else :
             self.life -= 1

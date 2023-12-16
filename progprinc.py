@@ -11,7 +11,7 @@ Il reste à faire :
 - Mettre un menu Start game avec des règles --> ne pas commencer la partie directement
 - Faire apparaître le nombre de vie restantes - Gérer les vies
 - Faire apparaître le score (10 points pour un ennemi abattu, 
-                            30 points si c'est un ennemi en capacité de tirer, 
+                            20 points si c'est un ennemi en capacité de tirer, 
                             150 points pour l'ennemi bonus)
 - Gérer le cas où les aliens sont trop bas ou lorque qu'ils tapent le vaisseau
 - Créer un ennemi bonus

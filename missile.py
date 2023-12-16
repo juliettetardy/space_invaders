@@ -1,3 +1,5 @@
+from tkinter import messagebox
+
 class Missile_S :
     def __init__ (self, x, y, window, canevas, ship) :
         self.x = x
@@ -39,19 +41,24 @@ class Missile_I :
             contacts = self.canevas.find_overlapping (*coord)
             if coord [3] < 0 :
                 self.canevas.delete (self.invader_shot)
-            for item in contacts :
-                dont_want = [back_img, self.invader_shot]      # back_img correspond à l'image de fond
-                list_invaders = []          # liste qui va rassembler tous le aliens qui ne doivent pas pouvoir se tuer entre eux
-                for invader in invaders :    
-                    inv = invader.invader_item
-                    list_invaders.append (inv)
-                dont_want = dont_want + list_invaders   # liste qui rassemble tous les éléments que l'on ne veut pas supprimer
-                if item not in dont_want :
-                    if item == self.ship.player_item :
-                        self.canevas.delete (self.invader_shot)
-                        self.ship.add_score (-30)
-                    else :
-                        self.canevas.delete (self.invader_shot)
-                        self.canevas.delete (item)
+            else :
+                for item in contacts :
+                    dont_want = [back_img, self.invader_shot]      # back_img correspond à l'image de fond
+                    list_invaders = []          # liste qui va rassembler tous le aliens qui ne doivent pas pouvoir se tuer entre eux
+                    for invader in invaders :    
+                        inv = invader.invader_item
+                        list_invaders.append (inv)
+                    dont_want = dont_want + list_invaders   # liste qui rassemble tous les éléments que l'on ne veut pas supprimer
+                    if item not in dont_want :
+                        if item == self.ship.player_item :
+                            self.canevas.delete (self.invader_shot)
+                            self.ship.add_score (-20)
+                            self.ship.lost_life()
+                            if self.ship.life == 0 :
+                                self.canevas.delete (item)
+                                messagebox.showinfo ("Perdu", "Vous n'avez plus de vies")
+                        else :
+                            self.canevas.delete (self.invader_shot)
+                            self.canevas.delete (item)
 
         self.window.after (30, lambda : self.bullet_invaders (back_img, invaders))
