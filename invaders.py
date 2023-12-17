@@ -18,7 +18,7 @@ class Invader :
     """
 
 
-    def __init__ (self, x, y, canevas, img_path) :
+    def __init__ (self, x, y, canevas, image_path) :
         """
         Initialisateur. 
         Fonction qui initialise les objets de la classe pour les réutiliser dans les fonctions associées à celle ci.
@@ -29,7 +29,7 @@ class Invader :
                 type = int
             canevas : canevas du jeu sur lequel l'alien va être placé
                 type = Canvas
-            img_path : image de l'alien
+            image_path : image de l'alien
                 type = str
 
         Sortie(s): None
@@ -44,7 +44,7 @@ class Invader :
         self.y = y
 
         # Chargement de l'image de l'alien
-        self.invader_pic = Image.open (img_path)
+        self.invader_pic = Image.open (image_path)
         self.invader_pic = self.invader_pic.resize ((100, 100))
         self.pic = ImageTk.PhotoImage (self.invader_pic)
         self.invader_item = self.canevas.create_image (self.x + 20, self.y + 20, image = self.pic)
@@ -100,7 +100,7 @@ class Invaders :
         move_invaders :
             Fonction qui gère le déplacement de tous les aliens placés sur la canevas
         shoot_ship :
-            Fonction qui permet aux aliens de tirer des missiles de mnières aléatoires
+            Fonction qui permet aux aliens de tirer des missiles de manière aléatoire
         suppr_figures :
             Fonction qui supprime les aliens et le vaisseau
         
@@ -271,10 +271,10 @@ class Invaders :
 
     def shoot_ship (self, back_img) :
         """ 
-        Fonction qui permet aux aliens de tirer des missiles de mnières aléatoires
+        Fonction qui permet aux aliens de tirer des missiles de manière aléatoire
         Entrée(s): 
             back_img : Image de fond du jeu ou se trouve les aliens
-                       type = PhotoImage
+                type = int
         Sortie(s): None
 
         """

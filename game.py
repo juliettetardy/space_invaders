@@ -193,10 +193,19 @@ class Game :
         self.Canevas_lvl1.delete ('all') 
         self.Canevas_lvlboss.delete ('all')
 
-        # Réinitialisation des scores et du nombre de vies
+        # Suppression de la frame précédente (frame premier niveau)
+        self.frame_lvl1.grid_forget()
+
+        # Affichage du score et des vies du joueur
+        self.show_score_and_life()
+
+        # Apparition de la frame du niveau boss
+        self.frame_lvlboss.grid()
+        
+        # (Ré) initialisation des scores et du nombre de vies
         self.life_boss.set (10)
 
-        # Remise à l'initiale des widgets et des figures sur le Canevas 
+        # (Re) mise à l'initiale des widgets et des figures sur le Canevas 
         img = self.create_widgets ("lvlboss")
         self.create_figures_nvboss (img)
 
@@ -214,23 +223,32 @@ class Game :
             button_quit = Button (self.frame_lvl1, text = 'Quit', fg = 'navy', command = self.window.destroy)
             button_quit.grid (row = 4, padx = 3, pady = 3)
 
-            # Crétion d'un bouton pour relancer une nouvelle partie
+            # Création d'un bouton pour relancer une nouvelle partie
             button_new_game = Button (self.frame_lvl1, text = 'New game', fg ='navy', command = self.new_game)
             button_new_game.grid (row = 2, padx = 3, pady = 3)
+
+            # Création d'un bouton pour lancer le niveau boss
+            button_new_game = Button (self.frame_lvl1, text = 'Start boss level', fg ='navy', command = self.boss_level)
+            button_new_game.grid (row = 4, sticky = E, padx = 3, pady = 3)
+
+            # Ajout d'une image de fond 
+            background_img = self.Canevas_lvl1.create_image (0, 0, anchor = NW, image = self.background)
+            self.Canevas_lvl1.grid()
+            return background_img
         
         elif typ_lvl == "lvlboss" :
             # Création d'un bouton pour détruire la fenêtre
             button_quit = Button (self.frame_lvlboss, text = 'Quit', fg = 'navy', command = self.window.destroy)
             button_quit.grid (row = 4, padx = 3, pady = 3)
 
-            # Crétion d'un bouton pour relancer une nouvelle partie
+            # Création d'un bouton pour relancer une nouvelle partie
             button_new_game = Button (self.frame_lvlboss, text = 'Restart boss level', fg ='navy', command = self.boss_level)
             button_new_game.grid (row = 2, padx = 3, pady = 3)
         
-        # Ajout d'une image de fond 
-        background_img = self.Canevas_lvl1.create_image (0, 0, anchor = NW, image = self.background)
-        self.Canevas_lvl1.grid()
-        return background_img
+            # Ajout d'une image de fond 
+            background_img = self.Canevas_lvlboss.create_image (0, 0, anchor = NW, image = self.background)
+            self.Canevas_lvlboss.grid()
+            return background_img
 
     def create_figures_lvl1 (self, back_img = 1) :
         """
@@ -263,7 +281,7 @@ class Game :
         invaders.move_invaders()
 
         # Création d'un missile tiré par le vaisseau
-        self.Canevas_lvl1.bind_all ("<KeyPress-space>", lambda _ : Player.fire_shoot (back_img, invaders)) 
+        self.Canevas_lvl1.bind_all ("<KeyPress-space>", lambda _ : Player.shoot_invaders (back_img, invaders)) 
 
         # Création des missiles tirés par les aliens
         invaders.shoot_ship (back_img)
@@ -271,8 +289,6 @@ class Game :
         # Modification du score et de la vie
         Player.var_score = self.score
         Player.var_life = self.life_nb
-
-        return Player.fire_shoot (back_img, invaders, False)
     
     def create_figures_nvboss (self, back_img = 1) :
         """
@@ -290,12 +306,12 @@ class Game :
         # Gestion des déplacements du joueur en utilisant des touches du clavier
         self.Canevas_lvlboss.bind_all ("<KeyPress-Left>", lambda _ : Player.ship_move (-25)) 
         self.Canevas_lvlboss.bind_all ("<KeyPress-Right>", lambda _ : Player.ship_move (25)) 
-        
-        # Création d'un missile
-        self.Canevas_lvlboss.bind_all ("<KeyPress-space>", lambda _ : Player.fire_shoot (back_img)) 
 
         # Création du boss et gestion de ses mouvements
         boss = Boss (self.width_canvas / 2, 50, self.frame_lvlboss, self.Canevas_lvlboss, Player, "images/boss.png")
+
+        # Création d'un missile pour le vaisseau
+        self.Canevas_lvlboss.bind_all ("<KeyPress-space>", lambda _ : Player.shoot_boss (back_img, boss)) 
 
         # Création des missiles pour le boss
         boss.boss_shot (back_img)
