@@ -181,6 +181,7 @@ class Game :
         end_lvl1 = self.create_figures_lvl1 (img)
         if end_lvl1 == "victory" :     # si le joueur a réussi à terminer le premier niveau, il peut acccéder alors au niveau boss
             self.boss_level()
+    
 
     def boss_level (self) :
         """
