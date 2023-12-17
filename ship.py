@@ -3,7 +3,7 @@ from missile import Missile_S
 from PIL import Image, ImageTk
 
 class Ship:
-    # Création du vaisseau, de sa position initiale et de son image
+    
     def __init__ (self, x, y, window, canevas, width, height, img_path) : 
         self.x = x
         self.y = y
