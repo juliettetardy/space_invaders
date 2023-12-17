@@ -94,10 +94,10 @@ class Missile_I :
     Fonctions 
     ---------
         bullet_invaders : 
-            zudgyzu
+            Fonction qui permet aux aliens de tirer des missiles
     
         suppr_figures :
-            cjbcz
+             Fonction qui permet de supprimer les aliens et le vaisseau
 
     """
     def __init__ (self, x, y, window, canevas, ship) :
