@@ -101,6 +101,7 @@ class Game :
         self.life_text = Label (self.frame_lvl1, fg = 'navy', text = "Remaining lives : ")
         self.life_text.grid (row = 3, sticky = W, padx = 3, pady = 3)
 
+
         ## ----- Niveau boss du jeu -----
         # Création de la frame du niveau boss
         self.frame_lvlboss = Frame(self.window)
@@ -356,6 +357,8 @@ class Game :
         # Affichage du nombre de vie
         self.label_life.grid()
         self.life_text.grid()
+
+    
 
 
     
