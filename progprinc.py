@@ -8,12 +8,15 @@ Commencé le : 10/11/2023
 Dernière modification du code réalisée le : 17/12/2023
 
 Il reste à faire :
-- Mettre des règles sur le menu start game
 - Faire apparaître le score (10 points pour un ennemi abattu, 
                             20 points si c'est un ennemi en capacité de tirer, 
                             150 points pour l'ennemi bonus)
 - Créer un ennemi bonus
-- 
+- Bonne pratiques + commentaires fichier invaders
+- Bonne pratiques + commentaires fichier missile
+- Bonne pratiques + commentaires fichier ship
+- Mettre des règles sur le menu start game
+- Creer un READ ME
 """
 
 # Importation des fichiers et/ou bibliothèque(s) nécessaire(s) au fonctionnement du jeu
