@@ -105,16 +105,12 @@ class Ship:
             invaders :
                 Liste des numéros des aliens sur le canevas
                 type = list
-            action :
-                Paramètre qui permet de savoir si il faut lancer la fonction ou non
-                type = bool
         Sortie(s): None
 
         """
         # Si il n'y a plus d'aliens, c'est la fin de la partie
         if invaders.get_invaders() == [] :
             messagebox.showinfo ("Bravo !", "Vous avez réussi à éliminer tous les aliens !")
-            return "victory"
 
         else :
             coord = self.canevas.coords (self.player_item)
@@ -133,9 +129,6 @@ class Ship:
             boss :
                 Boss que le joueur doit vaincre 
                 type = Class
-            action :
-                Paramètre qui permet de savoir si il faut lancer la fonction ou non
-                type = bool
         Sortie(s): None
 
         """
