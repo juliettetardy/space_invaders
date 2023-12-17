@@ -75,7 +75,7 @@ class Game :
 
         ## ----- Premier niveau du jeu -----
         # Création de la frame du premier niveau
-        self.frame_lvl1 = Frame(self.window)
+        self.frame_lvl1 = Frame (self.window)
         self.Canevas_lvl1 = Canvas (self.frame_lvl1, width = self.width_canvas, height = self.height_canvas, bg = 'gray')
 
         # Affichage de la frame du premier niveau
@@ -104,7 +104,7 @@ class Game :
 
         ## ----- Niveau boss du jeu -----
         # Création de la frame du niveau boss
-        self.frame_lvlboss = Frame(self.window)
+        self.frame_lvlboss = Frame (self.window)
         self.Canevas_lvlboss = Canvas (self.frame_lvlboss, width = self.width_canvas, height = self.height_canvas, bg = 'gray')
 
         # Affichage de la frame du niveau boss
@@ -148,7 +148,7 @@ class Game :
         # Création et mise en route d'une partie
         self.new_game()
 
-    def start_game_boss (self):
+    def start_game_boss (self) :
         """ 
         Fonction qui démarre le jeu losqu'on appuie sur le bouton New Game depuis le niveau boss
         Entrée(s): None

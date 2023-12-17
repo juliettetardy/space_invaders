@@ -182,7 +182,6 @@ class Invaders :
 
             else : 
                 # Deuxième cas : ligne de 4 aliens
-
                 # Coordonnées X,Y de chaque alien :
                 place_for4 = width_canvas / 5
                 final_place_for4 = place_for4 - 20 
