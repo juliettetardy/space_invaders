@@ -61,9 +61,9 @@ class Boss :
         self.var_life_boss = None
 
         self.boss_pic = Image.open (image_path)
-        self.boss_pic = self.boss_pic.resize ((100, 100))
+        self.boss_pic = self.boss_pic.resize ((150, 150))
         self.pic = ImageTk.PhotoImage (self.boss_pic)
-        self.boss_item = self.canevas.create_image (self.x + 20, self.y + 20, image = self.pic)
+        self.boss_item = self.canevas.create_image (self.x + 20, self.y - 20, image = self.pic)
 
     def boss_move (self) :
         """ 
@@ -92,7 +92,7 @@ class Boss :
         if can_shoot == 150 :
             coord = self.canevas.coords (self.boss_item)
             if len (coord) == 2 :
-                shot = Missile_B (coord [0] - 5, coord [1] + 40, self.window, self.canevas, self.ship, self.boss_item)
+                shot = Missile_B (coord [0] - 5, coord [1] + 80, self.window, self.canevas, self.ship, self.boss_item)
                 shot.bullet_boss (back_img)
         
         # Exécute la fonction après un délai (pas immédiatement)
