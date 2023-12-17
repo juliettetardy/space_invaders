@@ -25,14 +25,14 @@ class Ship:
     def ship_move (self, delta) :
         coord = self.canevas.coords (self.player_item)
         if len (coord) == 2 :
-            new_position = coord[0] + delta
+            new_position = coord [0] + delta
             if 40 < new_position < 1490 : 
                 self.canevas.move (self.player_item, delta, 0)
         
     def fire_shoot (self, back_img) :
         coord = self.canevas.coords (self.player_item)
         if len (coord) == 2 :
-            shot = Missile_S (coord[0] + 7, coord[1] - 80, self.window, self.canevas, self)
+            shot = Missile_S (coord [0] + 7, coord [1] - 80, self.window, self.canevas, self)
             shot.bullet_ship (back_img)
 
     def get_score (self) :

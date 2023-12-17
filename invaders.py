@@ -6,9 +6,11 @@ from tkinter import messagebox
 
 class Invader :
     def __init__ (self, x, y, canevas, img_path) :
-        self.canevas = canevas
         self.x = x
         self.y = y
+
+        self.canevas = canevas
+
         self.invader_pic = Image.open (img_path)
         self.invader_pic = self.invader_pic.resize ((100, 100))
         self.pic = ImageTk.PhotoImage (self.invader_pic)
@@ -28,6 +30,7 @@ class Invaders :
         self.window = window
         self.canevas = canevas
         self.ship = ship
+
         self.imgPath = imgPath
         self.invaders = []
         self.speed = 4
@@ -104,8 +107,8 @@ class Invaders :
 
     def shoot_ship (self, back_img) :
         for invader in self.invaders :
-            can_move = randint(0, 250)
-            if can_move == 250 :
+            can_shoot = randint (0, 250)
+            if can_shoot == 250 :
                 coord = invader.get_position()
                 if len (coord) == 2 :
                     shot = Missile_I (coord[0] - 5, coord[1] + 40, self.window, self.canevas, self.ship)

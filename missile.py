@@ -7,8 +7,8 @@ class Missile_S :
         self.y = y
         self.window = window
         self.canevas = canevas
-        self.speed_shot_s = - 15
         self.ship = ship
+        self.speed_shot_s = - 15
         self.ship_shot = self.canevas.create_rectangle (self.x, self.y, self.x + 5, self.y + 10, width = 5, outline = 'brown')
         
     def bullet_ship (self, back_img) :
@@ -31,8 +31,8 @@ class Missile_I :
         self.y = y
         self.window = window
         self.canevas = canevas
-        self.speed_shot_i = 10
         self.ship = ship
+        self.speed_shot_i = 10
         self.invader_shot = self.canevas.create_rectangle (self.x, self.y, self.x + 5, self.y + 10, width = 5, outline = 'green')
     
     def bullet_invaders (self, back_img, invaders) :
@@ -49,7 +49,7 @@ class Missile_I :
                     for invader in invaders :    
                         inv = invader.invader_item
                         list_invaders.append (inv)
-                    dont_want = dont_want + list_invaders   # liste qui rassemble tous les éléments que l'on ne veut pas supprimer
+                    dont_want = dont_want + list_invaders   # liste qui rassemble tous les éléments que l'on ne veut pas supprimer quand les aliens tirent
                     if item not in dont_want :
                         if item == self.ship.player_item :
                             self.canevas.delete (self.invader_shot)
@@ -69,3 +69,16 @@ class Missile_I :
         for invader in invaders :
             self.canevas.delete (invader.invader_item)
         self.canevas.delete (self.ship.player_item)
+
+class Missile_B :
+    def __init__ (self, x, y, window, canevas, ship) :
+        self.x = x
+        self.y = y
+        self.window = window
+        self.canevas = canevas
+        self.ship = ship
+        self.speed_shot_b = 10
+        self.boos_shot = self.canevas.create_rectangle (self.x, self.y, self.x + 5, self.y + 10, width = 5, outline = 'purple')
+
+    def bullet_boss (self, back_img) :
+        self.ship.add_score (150)
