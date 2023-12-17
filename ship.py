@@ -99,9 +99,12 @@ class Ship:
         """ 
         Fonction qui envoie un missile du vaisseau
         Entrée(s): 
-            back_img: 
+            back_img : 
                 Image de fond du jeu
-                type = 
+                type = int
+            invaders :
+                Liste des numéros des aliens sur le canevas
+                type = list
         Sortie(s): None
 
         """
@@ -135,7 +138,7 @@ class Ship:
         Fonction qui ajoute le score du joueur  
         Entrée(s): 
             score_to_add :
-                points à ajouter au score du joueur
+                Points à ajouter au score du joueur
                 type = int
         Sortie(s): None
 
