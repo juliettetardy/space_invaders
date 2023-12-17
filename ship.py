@@ -1,3 +1,4 @@
+# Importation des fichiers nécessaires au fonctionnement du jeu
 from missile import Missile_S
 from PIL import Image, ImageTk
 

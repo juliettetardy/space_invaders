@@ -1,3 +1,4 @@
+# Importation des fichiers et/ou bibliothèque(s) nécessaire(s) au fonctionnement du jeu
 from PIL import Image, ImageTk
 from missile import Missile_I
 from random import randint

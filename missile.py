@@ -1,3 +1,4 @@
+# Importation des fichiers et/ou bibliothèque(s) nécessaire(s) au fonctionnement du jeu
 from tkinter import messagebox
 
 class Missile_S :

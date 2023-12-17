@@ -1,4 +1,7 @@
+# Importation des fichiers et/ou bibliothèque(s) nécessaire(s) au fonctionnement du jeu
 from tkinter import Tk, Canvas, Button
+
+
 class Menu :
     def __init__(self,w,h):
     
