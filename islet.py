@@ -45,10 +45,10 @@ class Islet :
 
                 # Création des cubes
                 cube = self.canevas.create_rectangle (
-                    self.x + (i)*self.side,
-                    self.y + (j)*self.side, 
-                    self.x + self.side + (i)*self.side, 
-                    self.y + self.side + (j)*self.side ,
+                    self.x + (i) * self.side,
+                    self.y + (j) * self.side, 
+                    self.x + self.side + (i) * self.side, 
+                    self.y + self.side + (j) * self.side ,
                     width = 1, outline = 'black', fill = 'gray' )
                 
                 # Ajout des cubes
