@@ -149,7 +149,7 @@ class Ship:
 
     def lost_life (self) :
         """ 
-        Fonction qui démarre le jeu lorsque l'on est sur l'écran d"accueil 
+        Fonction qui gère la perte des vies à chaque fois que l'utilisateur en perd une
         Entrée(s): None
         Sortie(s): 
             0 : 
