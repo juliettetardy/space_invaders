@@ -16,7 +16,8 @@ De plus, vous ne serez jamais au bout de vos surprises... Le super méga ultra a
 
 Chaque alien tué vous rapporte 10 points.
 Chaque missile qui atteint le vaisseau vous fait perdre 20 points.
-Le boss final lui, vous fait gagner 150 points!
+Si le boss final vous touche, il vous fait perdre 30 points.
+Le boss final lui, vous fait gagner 150 points !
 
 Alors explosez les scores, explosez les et sauvez la galaxie !
 

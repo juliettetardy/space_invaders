@@ -81,11 +81,11 @@ class Missile_S :
                 if item not in [back_img, self.ship_shot] : 
                     self.canevas.delete (self.ship_shot)
                     self.canevas.delete (item)
+                    
                     if item in invaders :
                         invaders.remove (item)
-
-                    # Ajout du score car contact 
-                    self.ship.add_score (10)  
+                        # Ajout du score car contact 
+                        self.ship.add_score (10)  
 
         # La fonction attend un délai et ne s'exécute pas tout de suite
         self.window.after (30, lambda : self.bullet_ship_i (back_img, invaders))

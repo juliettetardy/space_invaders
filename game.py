@@ -223,7 +223,10 @@ class Game :
         # Apparition de la frame du niveau boss
         self.frame_lvlboss.grid()
         
-        # (Ré) initialisation des scores et du nombre de vies
+        # Réinitialisation du nombre de vies
+        self.life_nb.set (3)
+
+        # (Ré) initialisation du nombre de vies du boss
         self.life_boss.set (10)
 
         # (Re) mise à l'initiale des widgets et des figures sur le Canevas 
