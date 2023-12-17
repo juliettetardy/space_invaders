@@ -13,7 +13,7 @@ class Missile_S :
 
     """
 
-    def __init__ (self, x, y, window, canevas, ship, boss) :
+    def __init__ (self, x, y, window, canevas, ship, boss = 0) :
         """
         Initialisateur. 
         Fonction qui initialise les objets de la classe pour les réutiliser dans les fonctions associées à celle ci.
@@ -56,6 +56,9 @@ class Missile_S :
             back_img :
                 Image de fond du jeu 
                 type = int
+            invaders :
+                Liste des numéros des aliens sur le canevas
+                type = list
         Sortie(s) : None
 
         """

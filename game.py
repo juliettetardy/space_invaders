@@ -309,7 +309,8 @@ class Game :
         self.Canevas_lvlboss.bind_all ("<KeyPress-Right>", lambda _ : Player.ship_move (25)) 
 
         # Création du boss et gestion de ses mouvements
-        boss = Boss (self.width_canvas / 2, 50, self.frame_lvlboss, self.Canevas_lvlboss, Player, "images/boss.png")
+        boss = Boss (self.width_canvas / 2 - 25, 100, self.frame_lvlboss, self.Canevas_lvlboss, Player, "images/boss.png")
+        boss.boss_move()
 
         # Création d'un missile pour le vaisseau
         self.Canevas_lvlboss.bind_all ("<KeyPress-space>", lambda _ : Player.shoot_boss (back_img, boss)) 
