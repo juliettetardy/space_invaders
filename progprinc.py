@@ -12,7 +12,6 @@ Il reste à faire :
                             20 points si c'est un ennemi en capacité de tirer, 
                             150 points pour l'ennemi bonus)
 - Créer un ennemi bonus
-- Bonne pratiques + commentaires fichier invaders
 - Bonne pratiques + commentaires fichier missile
 - Bonne pratiques + commentaires fichier ship
 - Mettre des règles sur le menu start game
