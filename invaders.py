@@ -308,3 +308,5 @@ class Invaders :
         # Suppression du vaisseau
         self.canevas.delete (self.ship.player_item)
 
+    
+
