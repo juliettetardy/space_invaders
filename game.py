@@ -45,10 +45,13 @@ class Game :
         # Initialisation dimensions des canevas 
         self.width_canvas = 1530
         self.height_canvas = 700
+
+        self.width_canvas_w = 1530
+        self.height_canvas_w = 1000
     
         # Création de la frame "écran d'accueil"
         self.welcome_frame = Frame(self.window)
-        self.Canevas_w = Canvas (self.welcome_frame, width = self.width_canvas, height = self.height_canvas, bg = 'gray')
+        self.Canevas_w = Canvas (self.welcome_frame, width = self.width_canvas_w, height = self.height_canvas_w, bg = 'gray')
 
         # Ajout d'un bouton pour démarrer le jeu
         button_start_game = Button (self.welcome_frame, text = 'Start game', fg ='navy', command = self.start_game)
@@ -56,7 +59,7 @@ class Game :
 
         # Affichage de l'image de fond de la frame d'accueil
         self.back_pic_welc = Image.open ("images/front_page.jpg")
-        self.resized_welc = self.back_pic_welc.resize ((1530, 700))
+        self.resized_welc = self.back_pic_welc.resize ((1530, 1000))
         self.background_welc = ImageTk.PhotoImage (self.resized_welc)
         self.Canevas_w.create_image(0, 0, image = self.background_welc, anchor = NW)
 

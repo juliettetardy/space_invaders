@@ -9,7 +9,6 @@ Dernière modification du code réalisée le : 17/12/2023
 
 Il reste à faire :
 - Mettre des règles sur le menu start game
-- Redimensionner les fenêtres
 - Faire apparaître le score (10 points pour un ennemi abattu, 
                             20 points si c'est un ennemi en capacité de tirer, 
                             150 points pour l'ennemi bonus)
