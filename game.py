@@ -147,6 +147,28 @@ class Game :
 
         # Création et mise en route d'une partie
         self.new_game()
+
+    def start_game_boss (self):
+        """ 
+        Fonction qui démarre le jeu losqu'on appuie sur le bouton New Game depuis le niveau boss
+        Entrée(s): None
+        Sortie(s): None
+
+        """
+        # Suppression de la frame précédente (frame niveau boss)
+        self.frame_lvlboss.grid_forget()
+
+        # Suppression de la vie du boss
+        self.hide_life_boss()
+
+        # Affichage de la frame premier niveau
+        self.frame_lvl1.grid()
+
+        # Affichage du score et des vies du joueur
+        self.show_score_and_life()
+
+        # Création et mise en route d'une partie
+        self.new_game()
    
     def get_welcome_frame (self) :
         """
@@ -179,10 +201,7 @@ class Game :
 
         # Remise à l'initiale des widgets et des figures sur le Canevas 
         img = self.create_widgets()
-        end_lvl1 = self.create_figures_lvl1 (img)
-        if end_lvl1 == "victory" :     # si le joueur a réussi à terminer le premier niveau, il peut acccéder alors au niveau boss
-            self.boss_level()
-    
+        self.create_figures_lvl1 (img)
 
     def boss_level (self) :
         """
@@ -246,6 +265,10 @@ class Game :
             # Création d'un bouton pour relancer une nouvelle partie
             button_new_game = Button (self.frame_lvlboss, text = 'Restart boss level', fg ='navy', command = self.boss_level)
             button_new_game.grid (row = 2, padx = 3, pady = 3)
+
+            # Création d'un bouton pour relancer une nouvelle partie depuis le début
+            button_new_game = Button (self.frame_lvlboss, text = 'New game', fg ='navy', command = self.start_game_boss)
+            button_new_game.grid (row = 2, sticky = E, padx = 3, pady = 3)
         
             # Ajout d'une image de fond 
             background_img = self.Canevas_lvlboss.create_image (0, 0, anchor = NW, image = self.background)
@@ -341,6 +364,18 @@ class Game :
         # Masquage du nombre de vie
         self.label_life.grid_remove()
         self.life_text.grid_remove()
+
+    def hide_life_boss (self):
+        """
+        Fonction qui permet de cacher le nombre de vies restantes du boss.
+        "grid_remove" est une fonction qui rend des éléments invisibles dans l'interface.
+        Entrée(s): None
+        Sortie(s): None
+
+        """
+        # Masquage du nombre de vie
+        self.label_life_boss.grid_remove()
+        self.life_boss_text.grid_remove()
 
     def show_score_and_life (self):
         """

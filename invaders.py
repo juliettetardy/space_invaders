@@ -267,7 +267,7 @@ class Invaders :
                             break
 
         # Exécute la fonction après un délai (pas immédiatement)
-        self.window.after(20, self.move_invaders)
+        self.window.after (20, self.move_invaders)
 
     def shoot_ship (self, back_img) :
         """ 
