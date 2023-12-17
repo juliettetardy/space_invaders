@@ -90,10 +90,9 @@ class Boss :
                 # Si le joueur est touché par le boss, il perd une vie et si c'était sa dernière alors le joueur a perdu
                 if item == self.ship.player_item :
                     self.ship.add_score (-30)
-                    self.ship.lost_life()
-                    if self.ship.life == 0 :
-                        self.suppr_figures()
-                        messagebox.showinfo ("Perdu", "Vous n'avez plus de vies")
+                    self.ship.life = 0
+                    self.suppr_figures()
+                    messagebox.showinfo ("Perdu", "Vous avez été touché par le super alien")
 
         # Exécute la fonction après un délai (pas immédiatement)
         self.window.after (20, self.boss_move)

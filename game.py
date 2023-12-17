@@ -226,7 +226,7 @@ class Game :
         # Réinitialisation du nombre de vies
         self.life_nb.set (3)
 
-        # (Ré) initialisation du nombre de vies du boss
+        # (Ré) initialisation du nombre de vies du boss 
         self.life_boss.set (10)
 
         # (Re) mise à l'initiale des widgets et des figures sur le Canevas 
