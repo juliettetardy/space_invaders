@@ -45,7 +45,7 @@ class Missile_S :
         self.speed_shot_s = - 15
         self.ship_shot = self.canevas.create_rectangle (self.x, self.y, self.x + 5, self.y + 10, width = 5, outline = 'brown')
         
-    def bullet_ship (self, back_img) :
+    def bullet_ship (self, back_img, invaders) :
         """ 
         Fonction qui permet au vaisseau de tirer un missile
         Entrée(s): 
@@ -53,34 +53,38 @@ class Missile_S :
                 Image de fond du jeu 
                 type = PhotoImage
         Sortie(s): 
-            self.canevas.coords : Coordonnées sur le canva de l'alien
-                                  type = list
+            self.canevas.coords : 
+                Coordonnées sur le canva de l'alien
+                type = list
 
         """
         self.canevas.move (self.ship_shot, 0, self.speed_shot_s)
 
-        #Récupération des coordonées 
+        # Récupération des coordonées 
         coord = self.canevas.coords (self.ship_shot)
         if len (coord) == 4 :
 
-            # On regarde si les coordonées sont similaires/ si il y a contact
+            # On regarde si les coordonées sont similaires / si il y a contact
             contacts = self.canevas.find_overlapping (*coord)
             if coord [3] < 0 :
 
                 # Si contact, on supprime 
                 self.canevas.delete (self.ship_shot)
+
             for item in contacts :
 
-                # On ne supprime pas le fond 
+                # On ne supprime pas le fond
                 if item not in [back_img, self.ship_shot] : 
                     self.canevas.delete (self.ship_shot)
                     self.canevas.delete (item)
+                    if item in invaders :
+                        invaders.remove (item)
 
                     # Ajout du score car contact 
-                    self.ship.add_score (10)
+                    self.ship.add_score (10)  
 
-        # La fonction attend un délai et ne s'execute pas de suite
-        self.window.after (30, lambda : self.bullet_ship (back_img))
+        # La fonction attend un délai et ne s'exécute pas tout de suite
+        self.window.after (30, lambda : self.bullet_ship (back_img, invaders))
 
 class Missile_I :
     """
@@ -182,7 +186,7 @@ class Missile_I :
                             self.canevas.delete (self.invader_shot)
                             self.canevas.delete (item)
 
-        # délai avant de réaliser la fonction pour qu'elle ne s'éxecute pas tout de suite
+        # délai avant de réaliser la fonction pour qu'elle ne s'exécute pas tout de suite
         self.window.after (30, lambda : self.bullet_invaders (back_img, invaders))
 
     def suppr_figures (self, invaders) :

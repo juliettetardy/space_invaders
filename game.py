@@ -179,7 +179,7 @@ class Game :
         # Remise à l'initiale des widgets et des figures sur le Canevas 
         img = self.create_widgets()
         end_lvl1 = self.create_figures_lvl1 (img)
-        if end_lvl1 == 1 :     # si le joueur a réussi à terminer le premier niveau, il peut acccéder alors au niveau boss
+        if end_lvl1 == "victory" :     # si le joueur a réussi à terminer le premier niveau, il peut acccéder alors au niveau boss
             self.boss_level()
 
     def boss_level (self) :
@@ -262,15 +262,17 @@ class Game :
         invaders.add_invaders()
         invaders.move_invaders()
 
-        # Création d'un missile
-        self.Canevas_lvl1.bind_all ("<KeyPress-space>", lambda _ : Player.fire_shoot (back_img)) 
+        # Création d'un missile tiré par le vaisseau
+        self.Canevas_lvl1.bind_all ("<KeyPress-space>", lambda _ : Player.fire_shoot (back_img, invaders)) 
 
-        # Création des missiles pour les aliens
+        # Création des missiles tirés par les aliens
         invaders.shoot_ship (back_img)
 
         # Modification du score et de la vie
         Player.var_score = self.score
         Player.var_life = self.life_nb
+
+        #return 
     
     def create_figures_nvboss (self, back_img = 1) :
         """
@@ -303,7 +305,7 @@ class Game :
         Player.var_life = self.life_nb
 
         # Modification de la vie du boss
-        boss.var_life = self.life_boss
+        boss.var_life_boss = self.life_boss
 
     def hide_score_and_life (self):
         """

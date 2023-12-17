@@ -1,6 +1,8 @@
 # Importation des fichiers nécessaires au fonctionnement du jeu
 from missile import Missile_S
+from invaders import Invaders
 from PIL import Image, ImageTk
+from tkinter import messagebox
 
 class Ship:
     """
@@ -93,24 +95,33 @@ class Ship:
             if 40 < new_position < 1490 : 
                 self.canevas.move (self.player_item, delta, 0)
         
-    def fire_shoot (self, back_img) :
+    def fire_shoot (self, back_img, invaders) :
         """ 
         Fonction qui envoie un missile du vaisseau
         Entrée(s): 
-            back_img: 
+            back_img : 
                 Image de fond du jeu
-                type = 
+                type = int
+            invaders :
+                Liste des numéros des aliens sur le canevas
+                type = list
         Sortie(s): None
 
         """
-        coord = self.canevas.coords (self.player_item)
-        if len (coord) == 2 :
-            # Création d'un missile
-            shot = Missile_S (coord [0] + 7, coord [1] - 80, self.window, self.canevas, self)
-            shot.bullet_ship (back_img)
+
+        # Si il n'y a plus d'aliens, c'est la fin de la partie
+        if invaders == [] :
+            messagebox.showinfo ("Bravo !", "Vous avez réussi à éliminer tous les aliens")
+            #return "victory"
+
+        else :
+            coord = self.canevas.coords (self.player_item)
+            if len (coord) == 2 :
+                # Création d'un missile
+                shot = Missile_S (coord [0] + 7, coord [1] - 80, self.window, self.canevas, self)
+                shot.bullet_ship (back_img, invaders.get_invaders())
 
     def get_score (self) :
-
         """ 
         Fonction qui récupère le score 
         Entrée(s): None
@@ -127,7 +138,7 @@ class Ship:
         Fonction qui ajoute le score du joueur  
         Entrée(s): 
             score_to_add :
-                points à ajouter au score du joueur
+                Points à ajouter au score du joueur
                 type = int
         Sortie(s): None
 
@@ -149,13 +160,15 @@ class Ship:
                 type = int  
 
         """
-        # Cas ou le joueur n'as plus qu'une vie
+
+        # Cas où le joueur n'a plus qu'une vie
         if self.life == 1 :
             self.life -= 1
             if self.var_life :
                 self.var_life.set (self.life)
             return 1
-        # Cas ou le joueur a encore 2 ou 3 vies
+        
+        # Cas où le joueur a encore 2 ou 3 vies
         else :
             self.life -= 1
             if self.var_life :
