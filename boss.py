@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 from missile import Missile_B
 from math import cos, sin
 from random import randint
+from tkinter import messagebox
 
 class Boss :
     """
@@ -72,15 +73,27 @@ class Boss :
         Sortie(s): None
 
         """
-        coord  = self.canevas.coords (self.boss_item)
-        if len (coord) == 2 :
-            if coord [0] + 20 >= 1510 or coord [0] - 20 <= 20 :  # collision avec les bords gauche et droite
+        coords  = self.canevas.coords (self.boss_item)
+        if len (coords) == 2 :
+            if coords [0] + 20 >= 1510 or coords [0] - 20 <= 20 :  # collision avec les bords gauche et droite
                 self.dx = - self.dx 
-            if coord [1] + 20 >= 640 or coord [1] - 20 <= 0 :   # collision avec les bords haut et bas
+            if coords [1] + 20 >= 640 or coords [1] - 20 <= 0 :   # collision avec les bords haut et bas
                 self.dy = - self.dy 
 
             # Le boss se déplace
             self.canevas.move (self.boss_item, self.dx, self.dy)
+        
+            coord = [coords [0] - 20, coords [1] - 20] + coords
+            # Utilisation de find_overlapping pour savoir si les coordonnées sont les mêmes que d'autres éléments sur le canevas
+            contacts = self.canevas.find_overlapping (*coord)
+            for item in contacts :
+                # Si le joueur est touché par le boss, il perd une vie et si c'était sa dernière alors le joueur a perdu
+                if item == self.ship.player_item :
+                    self.ship.add_score (-30)
+                    self.ship.lost_life()
+                    if self.ship.life == 0 :
+                        self.suppr_figures()
+                        messagebox.showinfo ("Perdu", "Vous n'avez plus de vies")
 
         # Exécute la fonction après un délai (pas immédiatement)
         self.window.after (20, self.boss_move)
@@ -131,3 +144,17 @@ class Boss :
             if self.var_life_boss :
                 self.var_life_boss.set (self.life_boss)
             return 0
+        
+    def suppr_figures (self) :
+        """ 
+        Fonction qui permet de supprimer le boss et le vaisseau
+        Entrée(s): None
+
+        Sortie(s): None
+
+        """
+        # Suppression du boss
+        self.canevas.delete (self.boss_item)
+
+        # Suppression du vaisseau
+        self.canevas.delete (self.ship.player_item)
