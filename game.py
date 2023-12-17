@@ -6,7 +6,6 @@ from ship import Ship
 from boss import Boss
 from islet import Islet
 
-
 class Game :
     """
     Une classe qui permet de jouer au jeu "Space Invaders _ Ju^2 Version".
