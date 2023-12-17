@@ -159,7 +159,7 @@ class Game :
         self.frame_lvlboss.grid_forget()
 
         # Suppression de la vie du boss
-        self.hide_life_boss()
+        self.hide_boss_life()
 
         # Affichage de la frame premier niveau
         self.frame_lvl1.grid()
@@ -368,7 +368,7 @@ class Game :
         self.label_life.grid_remove()
         self.life_text.grid_remove()
 
-    def hide_life_boss (self):
+    def hide_boss_life (self):
         """
         Fonction qui permet de cacher le nombre de vies restantes du boss.
         "grid_remove" est une fonction qui rend des éléments invisibles dans l'interface.
