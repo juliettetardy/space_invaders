@@ -1,5 +1,5 @@
 # Importation des fichiers nécessaires au fonctionnement du jeu
-from missile import Missile_S
+from missile import Missile_S, Missile_B
 from invaders import Invaders
 from PIL import Image, ImageTk
 from tkinter import messagebox
@@ -25,7 +25,7 @@ class Ship:
 
     """
     
-    def __init__ (self, x, y, window, canevas, width, height, img_path) : 
+    def __init__ (self, x, y, window, canevas, width, height, image_path) : 
         """
         Initialisateur. 
         Fonction qui initialise les objets de la classe pour les réutiliser dans les fonctions associées à celle ci.
@@ -75,7 +75,7 @@ class Ship:
         # Création de l'image du vaisseau
         self.w = width / 2
         self.h = height - 70
-        self.ship_pic = Image.open (img_path)
+        self.ship_pic = Image.open (image_path)
         self.ship_pic = self.ship_pic.resize ((100,100))
         self.pic = ImageTk.PhotoImage (self.ship_pic)
         self.player_item = self.canevas.create_image (self.w, self.h, image = self.pic)
@@ -95,9 +95,9 @@ class Ship:
             if 40 < new_position < 1490 : 
                 self.canevas.move (self.player_item, delta, 0)
         
-    def fire_shoot (self, back_img, invaders, action = True) :
+    def shoot_invaders (self, back_img, invaders) :
         """ 
-        Fonction qui envoie un missile du vaisseau
+        Fonction qui envoie un missile du vaisseau vers les aliens
         Entrée(s): 
             back_img : 
                 Image de fond du jeu
@@ -111,18 +111,39 @@ class Ship:
         Sortie(s): None
 
         """
-        if action == True :
-            # Si il n'y a plus d'aliens, c'est la fin de la partie
-            if invaders.get_invaders() == [] :
-                messagebox.showinfo ("Bravo !", "Vous avez réussi à éliminer tous les aliens")
-                return "victory"
+        # Si il n'y a plus d'aliens, c'est la fin de la partie
+        if invaders.get_invaders() == [] :
+            messagebox.showinfo ("Bravo !", "Vous avez réussi à éliminer tous les aliens !")
+            return "victory"
 
-            else :
-                coord = self.canevas.coords (self.player_item)
-                if len (coord) == 2 :
-                    # Création d'un missile
-                    shot = Missile_S (coord [0] + 7, coord [1] - 80, self.window, self.canevas, self)
-                    shot.bullet_ship (back_img, invaders.get_invaders())
+        else :
+            coord = self.canevas.coords (self.player_item)
+            if len (coord) == 2 :
+                # Création d'un missile
+                shot = Missile_S (coord [0] + 7, coord [1] - 80, self.window, self.canevas, self)
+                shot.bullet_ship_i (back_img, invaders.get_invaders())
+
+    def shoot_boss (self, back_img, boss) :
+        """ 
+        Fonction qui envoie un missile du vaisseau vers le boss
+        Entrée(s): 
+            back_img : 
+                Image de fond du jeu
+                type = int
+            boss :
+                Boss que le joueur doit vaincre 
+                type = Class
+            action :
+                Paramètre qui permet de savoir si il faut lancer la fonction ou non
+                type = bool
+        Sortie(s): None
+
+        """
+        coord = self.canevas.coords (self.player_item)
+        if len (coord) == 2 :
+            # Création d'un missile
+            shot = Missile_S (coord [0] + 7, coord [1] - 80, self.window, self.canevas, self, boss)
+            shot.bullet_ship_b (back_img)
 
     def get_score (self) :
         """ 
