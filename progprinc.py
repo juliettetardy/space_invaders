@@ -19,9 +19,9 @@ Il reste à faire :
 from game import Game
 
 go = Game()
-window = go.get_window()
+frame = go.get_welcome_frame()
 
-go.create_widgets()
-go.create_figures()
+#go.create_widgets()
+#go.create_figures()
 
-window.mainloop()
+frame.mainloop()
