@@ -76,7 +76,7 @@ class Invader :
         Sortie(s): None
 
         """
-
+        
         # Cas ou l'alien ne descend pas
         if moving_down == 0 :
             self.canevas.move (self.invader_item, speed, 0)
@@ -143,6 +143,7 @@ class Invaders :
 
             # Distinction des cas pour que les aliens soit en quinconce 
             if nmb_lines % 2 != 0 :
+                # Premier cas : ligne de 5 aliens
 
                 # Coordonnées X,Y de chaque alien :
                 place_for5 = width_canvas / 5
@@ -157,15 +158,16 @@ class Invaders :
                     self.invaders.append (invader)
                     i += 1
 
-            # Deuxième cas : si les aliens sont la ligne du millieu
             else : 
+                # Deuxième cas : ligne de 4 aliens
+
                 # Coordonnées X,Y de chaque alien :
                 place_for4 = width_canvas / 5
                 final_place_for4 = place_for4 - 20 
                 coord_for4 = [[final_place_for4, height_aliens], [final_place_for4 + place_for4, height_aliens], [final_place_for4 + 2 * place_for4, height_aliens], [final_place_for4 + 3 * place_for4, height_aliens]]
                 i = 0
 
-            # Ajout un par un des aliens
+                # Ajout un par un des aliens
                 while i < 4 :
                     x0, y0 = coord_for4 [i][0], coord_for4 [i][1]
                     invader = Invader (x0, y0, self.canevas, self.image_path)
@@ -182,7 +184,7 @@ class Invaders :
         Sortie(s): None
 
         """
-        # Inversion de la vitesse de tous les aliens si celui le plus à droit ou le plus à gauche touche le bord du canva
+        # Inversion de la vitesse de tous les aliens si celui le plus à droit ou le plus à gauche touche le bord du canevas
         for invader in self.invaders :
             coord = invader.get_position()
             if len (coord) == 2 :
@@ -190,7 +192,7 @@ class Invaders :
                 # Prise en compte de la largeur de l'image de l'alien et des bords droit et gauche du canevas
                 if coord [0] + 20 >= 1530 or coord [0] - 20 <= 0 :
 
-                    # Inversion de la vitesse : les aliens se déplace dans l'autre sens 
+                    # Inversion de la vitesse des aliens
                     self.speed = - self.speed 
                     break
 
@@ -209,13 +211,13 @@ class Invaders :
                     # Les aliens ne bougent pas vers le bas 
                     invader.invaders_move (self.speed, 0)
 
-        # Destruction de vaisseau et arrêt de la partie si les aliens touchent le vaisseau ou le bas du canva
+        # Destruction de vaisseau et arrêt de la partie si les aliens touchent le vaisseau ou le bas du canevas
         for invader in self.invaders :
             coords = invader.get_position()
             if len (coords) == 2 :
                 coord = [coords [0] - 20, coords [1] - 20] + coords
 
-                # Utilisation de find overlapping pour savoir si les coordonnées sont les mêmes
+                # Utilisation de find overlapping pour savoir si les coordonnées sont les mêmes que d'autres éléments sur le canevas
                 contacts = self.canevas.find_overlapping (*coord)
                 if coord [1] > 620 :
                     self.canevas.delete (invader.invader_item)
