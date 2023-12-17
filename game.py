@@ -119,7 +119,9 @@ class Game :
         """
         Fonction qui affiche la frame du menu d'accueil
         Entrée(s): None
-        Sortie(s): welcome_frame
+        Sortie(s): 
+            welcome_frame : Frame du menu d'accueil
+                            type = frame    
 
         """
         # Masquage du score et des vies qui sont inutiles ici
@@ -150,8 +152,9 @@ class Game :
         """
         Fonction qui rassemble et ajoute les widgets sur la frame du jeu principal
         Entrée(s): None
-        Sortie(s): background_img
-        background_img : Image de fond du jeu
+        Sortie(s): 
+            background_img : Image de fond du jeu
+                             type = int
 
         """
         # Création d'un bouton pour détruire la fenêtre
@@ -170,9 +173,10 @@ class Game :
     def create_figures (self, back_img = 1) :
         """
         Fonction qui créer les objets (aliens, vaisseau, missiles, îlots) à afficher
-        Entrée(s): back_img
-        back_img :  Background du jeu.
-                    Si on ne veut pas afficher l'image de fond, il suffit de passer 0 en argument
+        Entrée(s):
+            back_img :  Background du jeu.
+                        Si on ne veut pas afficher l'image de fond, il suffit de passer 0 en argument
+                        type = int
         Sortie(s): None
 
         """

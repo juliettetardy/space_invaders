@@ -31,7 +31,9 @@ class Islet :
         Fonction qui multiplie le nombre de cubes pour former un îlot à plusieurs cubes. 
         Entrée(s): None
         Sortie(s):
-            list_cubes : nombre de cubes qui composent l'îlot et leur placement.
+            list_cubes : 
+                nombre de cubes qui composent l'îlot et leur placement.
+                type = list
 
         """
         # Initilisation de la liste des cubes 
@@ -48,10 +50,11 @@ class Islet :
                     self.x + (i) * self.side,
                     self.y + (j) * self.side, 
                     self.x + self.side + (i) * self.side, 
-                    self.y + self.side + (j) * self.side ,
+                    self.y + self.side + (j) * self.side,
                     width = 1, outline = 'black', fill = 'gray' )
                 
                 # Ajout des cubes
                 list_cubes.append (cube)
 
+        # Affichage des îlots
         return list_cubes
