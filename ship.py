@@ -1,6 +1,8 @@
 # Importation des fichiers nécessaires au fonctionnement du jeu
 from missile import Missile_S
+from invaders import Invaders
 from PIL import Image, ImageTk
+from tkinter import messagebox
 
 class Ship:
     
@@ -29,23 +31,31 @@ class Ship:
             if 40 < new_position < 1490 : 
                 self.canevas.move (self.player_item, delta, 0)
         
-    def fire_shoot (self, back_img) :
-        coord = self.canevas.coords (self.player_item)
-        if len (coord) == 2 :
-            shot = Missile_S (coord [0] + 7, coord [1] - 80, self.window, self.canevas, self)
-            shot.bullet_ship (back_img)
+    def fire_shoot (self, back_img, invaders) :
+
+        # Si il n'y a plus d'aliens, c'est la fin de la partie
+        if invaders == [] :
+            messagebox.showinfo ("Bravo !", "Vous avez réussi à éliminer tous les aliens")
+            #return "victory"
+
+        else :
+            coord = self.canevas.coords (self.player_item)
+            if len (coord) == 2 :
+                shot = Missile_S (coord [0] + 7, coord [1] - 80, self.window, self.canevas, self)
+                shot.bullet_ship (back_img, invaders.get_invaders())
 
     def get_score (self) :
-        # Mettre à jour le texte du label avec la nouvelle valeur du score
+        # met à jour le texte du label avec la nouvelle valeur du score
         return self.score
 
     def add_score (self, score_to_add) :
-        # Fonction pour ajouter au score
+        # ajoute au score la valeur en entrée
         self.score += score_to_add
         if self.var_score :
             self.var_score.set (self.score)
 
     def lost_life (self) :
+        # enlève une vie à chaque fois que la fonction est appelée
         if self.life == 1 :
             self.life -= 1
             if self.var_life :

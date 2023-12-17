@@ -55,8 +55,9 @@ class Invader :
         Fonction qui récupère les coordonnées d'un alien
         Entrée(s): None
         Sortie(s): 
-            self.canevas.coords : Coordonnées sur le canva de l'alien
-                                  type = list
+            self.canevas.coords : 
+                Coordonnées sur le canva de l'alien
+                type = list
 
         """
 
@@ -68,15 +69,17 @@ class Invader :
         """ 
         Fonction qui gère le déplacement d'un alien
         Entrée(s): 
-            speed : Vitesse à laquelle se déplace l'alien
-                    type = int
-            moving_down : Déplacement vers le bas de l'alien
-                          type = float
+            speed : 
+                Vitesse à laquelle se déplace l'alien
+                type = int
+            moving_down : 
+                Déplacement vers le bas de l'alien
+                type = float
 
         Sortie(s): None
 
         """
-        
+
         # Cas ou l'alien ne descend pas
         if moving_down == 0 :
             self.canevas.move (self.invader_item, speed, 0)
@@ -108,13 +111,17 @@ class Invaders :
         Initialisateur. 
         Fonction qui initialise les objets de la classe pour les réutiliser dans les fonctions associées à celle ci.
         Entrée(s): 
-            window : fenêtre associée au jeu ou apparaissent les aliens
+            window : 
+                fenêtre associée au jeu ou apparaissent les aliens
                 type = Tk
-            canevas : canevas du jeu sur lequel l'alien va être placé
+            canevas : 
+                canevas du jeu sur lequel l'alien va être placé
                 type = Canvas
-            ship : ship représente le vaisseau du joueur/ le joueur
+            ship : 
+                ship représente le vaisseau du joueur/ le joueur
                 type = int
-            image_path : image de l'alien
+            image_path : 
+                image de l'alien
                 type = str
 
         Sortie(s): None
@@ -124,11 +131,25 @@ class Invaders :
         self.ship = ship
         self.image_path = image_path
         self.invaders = []
+        self.index_invaders = []
         self.speed = 4
+
+    def get_invaders (self) :
+        """ 
+        Fonction qui ajoute plusieurs aliens (à partir de un créé dans la classe précédente)
+        Entrée(s): None
+        Sortie(s): 
+            self.invaders : 
+                Liste des numéros liés aux aliens sur le canevas et qui y sont toujours présents
+                type = list
+
+        """
+
+        return self.index_invaders
  
     def add_invaders (self) :
         """ 
-        Fonction qui ajoute plusieurs aliens (à partir de un crée dans la classe précedente)
+        Fonction qui ajoute plusieurs aliens (à partir de un créé dans la classe précédente)
         Entrée(s): None
         Sortie(s): None
 
@@ -156,6 +177,7 @@ class Invaders :
                     x0, y0 = coord_for5 [i][0], coord_for5 [i][1]
                     invader = Invader (x0, y0, self.canevas, self.image_path)
                     self.invaders.append (invader)
+                    self.index_invaders.append (invader.invader_item)
                     i += 1
 
             else : 
@@ -172,6 +194,7 @@ class Invaders :
                     x0, y0 = coord_for4 [i][0], coord_for4 [i][1]
                     invader = Invader (x0, y0, self.canevas, self.image_path)
                     self.invaders.append (invader)
+                    self.index_invaders.append (invader.invader_item)
                     i += 1
 
             # Espace entre les aliens
@@ -179,7 +202,7 @@ class Invaders :
 
     def move_invaders (self) :
         """ 
-        Fonction qui gère le déplacement de tous les aliens placés sur la canevas
+        Fonction qui gère le déplacement de tous les aliens placés sur le canevas
         Entrée(s): None
         Sortie(s): None
 
@@ -206,8 +229,8 @@ class Invaders :
                         #Les aliens bougent vers le bas 
                         invader.invaders_move (self.speed, 1)
                     break
-                else :
 
+                else :
                     # Les aliens ne bougent pas vers le bas 
                     invader.invaders_move (self.speed, 0)
 
@@ -217,10 +240,11 @@ class Invaders :
             if len (coords) == 2 :
                 coord = [coords [0] - 20, coords [1] - 20] + coords
 
-                # Utilisation de find overlapping pour savoir si les coordonnées sont les mêmes que d'autres éléments sur le canevas
+                # Utilisation de find_overlapping pour savoir si les coordonnées sont les mêmes que d'autres éléments sur le canevas
                 contacts = self.canevas.find_overlapping (*coord)
                 if coord [1] > 620 :
                     self.canevas.delete (invader.invader_item)
+                    self.invaders.remove (invader)
                     self.ship.life = 0
 
                     # Suppression des figures sur le canevas
@@ -241,7 +265,8 @@ class Invaders :
                             # Création d'un message de fin
                             messagebox.showinfo ("Perdu", "Vous avez été touché par un alien")
                             break
-        # Execute la fonction après un délai (pas immédiatement)
+
+        # Exécute la fonction après un délai (pas immédiatement)
         self.window.after(20, self.move_invaders)
 
     def shoot_ship (self, back_img) :
@@ -278,6 +303,7 @@ class Invaders :
         # Suppression de chaque alien
         for invader in self.invaders :
             self.canevas.delete (invader.invader_item)
+            self.invaders.remove (invader)
 
         # Suppression du vaisseau
         self.canevas.delete (self.ship.player_item)
