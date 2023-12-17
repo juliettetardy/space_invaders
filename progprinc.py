@@ -12,7 +12,6 @@ Il reste à faire :
                              150 points pour l'ennemi bonus)
 - Bonnes pratiques + commentaires fichier missile (non terminé)
 - Mettre des règles sur le menu start game
-- Modif
 
 """
 
