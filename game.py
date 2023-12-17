@@ -224,7 +224,7 @@ class Game :
             button_quit.grid (row = 4, padx = 3, pady = 3)
 
             # Crétion d'un bouton pour relancer une nouvelle partie
-            button_new_game = Button (self.frame_lvlboss, text = 'New game', fg ='navy', command = self.boss_level)
+            button_new_game = Button (self.frame_lvlboss, text = 'Restart boss level', fg ='navy', command = self.boss_level)
             button_new_game.grid (row = 2, padx = 3, pady = 3)
         
         # Ajout d'une image de fond 
@@ -272,7 +272,7 @@ class Game :
         Player.var_score = self.score
         Player.var_life = self.life_nb
 
-        #return 
+        return Player.fire_shoot (back_img, invaders, False)
     
     def create_figures_nvboss (self, back_img = 1) :
         """
@@ -298,7 +298,7 @@ class Game :
         boss = Boss (self.width_canvas / 2, 50, self.frame_lvlboss, self.Canevas_lvlboss, Player, "images/boss.png")
 
         # Création des missiles pour le boss
-        ##boss. ...
+        boss.boss_shot (back_img)
 
         # Modification du score et de la vie du joueur
         Player.var_score = self.score

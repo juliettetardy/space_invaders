@@ -95,7 +95,7 @@ class Ship:
             if 40 < new_position < 1490 : 
                 self.canevas.move (self.player_item, delta, 0)
         
-    def fire_shoot (self, back_img, invaders) :
+    def fire_shoot (self, back_img, invaders, action = True) :
         """ 
         Fonction qui envoie un missile du vaisseau
         Entrée(s): 
@@ -105,21 +105,24 @@ class Ship:
             invaders :
                 Liste des numéros des aliens sur le canevas
                 type = list
+            action :
+                Paramètre qui permet de savoir si il faut lancer la fonction ou non
+                type = bool
         Sortie(s): None
 
         """
+        if action == True :
+            # Si il n'y a plus d'aliens, c'est la fin de la partie
+            if invaders.get_invaders() == [] :
+                messagebox.showinfo ("Bravo !", "Vous avez réussi à éliminer tous les aliens")
+                return "victory"
 
-        # Si il n'y a plus d'aliens, c'est la fin de la partie
-        if invaders == [] :
-            messagebox.showinfo ("Bravo !", "Vous avez réussi à éliminer tous les aliens")
-            #return "victory"
-
-        else :
-            coord = self.canevas.coords (self.player_item)
-            if len (coord) == 2 :
-                # Création d'un missile
-                shot = Missile_S (coord [0] + 7, coord [1] - 80, self.window, self.canevas, self)
-                shot.bullet_ship (back_img, invaders.get_invaders())
+            else :
+                coord = self.canevas.coords (self.player_item)
+                if len (coord) == 2 :
+                    # Création d'un missile
+                    shot = Missile_S (coord [0] + 7, coord [1] - 80, self.window, self.canevas, self)
+                    shot.bullet_ship (back_img, invaders.get_invaders())
 
     def get_score (self) :
         """ 
