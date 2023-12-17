@@ -49,7 +49,7 @@ class Boss :
         self.x = x
         self.y = y
         self.speed = 10
-        self.angle = 0
+        self.angle = 90
         self.dx = self.speed * cos (self.angle)
         self.dy = self.speed * sin (self.angle)
 
@@ -74,10 +74,13 @@ class Boss :
         """
         coord  = self.canevas.coords (self.boss_item)
         if len (coord) == 2 :
-            if coord [0] + 20 >= 1530 or coord [0] - 20 <= 0 :  # collision avec les bords gauche et droite
-                self.speed = - self.speed 
-            if coord [1] + 20 >= 700 or coord [1] - 20 <= 0 :   # collision avec les bords haut et bas
-                self.speed = - self.speed 
+            if coord [0] + 20 >= 1510 or coord [0] - 20 <= 20 :  # collision avec les bords gauche et droite
+                self.dx = - self.dx 
+            if coord [1] + 20 >= 640 or coord [1] - 20 <= 0 :   # collision avec les bords haut et bas
+                self.dy = - self.dy 
+
+            # Le boss se déplace
+            self.canevas.move (self.boss_item, self.dx, self.dy)
 
         # Exécute la fonction après un délai (pas immédiatement)
         self.window.after (20, self.boss_move)
