@@ -79,6 +79,9 @@ class Boss :
             if coord [1] + 20 >= 700 or coord [1] - 20 <= 0 :   # collision avec les bords haut et bas
                 self.speed = - self.speed 
 
+        # Exécute la fonction après un délai (pas immédiatement)
+        self.window.after (20, self.boss_move)
+
     def boss_shot (self, back_img) :
         """ 
         Fonction qui permet au boss de tirer des missiles de manière aléatoire
