@@ -133,7 +133,7 @@ class Game :
 
     def start_game (self):
         """ 
-        Fonction qui démarre le jeu lorsque l'on est sur l'écran d"accueil 
+        Fonction qui démarre le jeu lorsque l'on est sur l'écran d'accueil 
         Entrée(s): None
         Sortie(s): None
 
