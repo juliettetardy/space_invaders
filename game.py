@@ -149,7 +149,7 @@ class Game :
 
     def start_game_boss (self):
         """ 
-        Fonction qui démarre le jeu lorsque l'on est sur l'écran d'accueil 
+        Fonction qui démarre le jeu losqu'on appuie sur le bouton New Game depuis le niveau boss
         Entrée(s): None
         Sortie(s): None
 
