@@ -82,20 +82,39 @@ class Boss :
 
             # Le boss se déplace
             self.canevas.move (self.boss_item, self.dx, self.dy)
-        
-            coord = [coords [0] - 20, coords [1] - 20] + coords
-            # Utilisation de find_overlapping pour savoir si les coordonnées sont les mêmes que d'autres éléments sur le canevas
-            contacts = self.canevas.find_overlapping (*coord)
-            for item in contacts :
-                # Si le joueur est touché par le boss, il perd une vie et si c'était sa dernière alors le joueur a perdu
-                if item == self.ship.player_item :
-                    self.ship.add_score (-30)
-                    self.ship.life = 0
-                    self.suppr_figures()
-                    messagebox.showinfo ("Perdu", "Vous avez été touché par le super alien")
+
+            if turn == 1 :
+                coord = [coords [0] - 20, coords [1] - 20] + coords
+                # Utilisation de find_overlapping pour savoir si les coordonnées sont les mêmes que d'autres éléments sur le canevas
+                contacts = self.canevas.find_overlapping (*coord)
+                for item in contacts :
+                    # Si le joueur est touché par le boss, il perd une vie et si c'était sa dernière alors le joueur a perdu
+                    if item == self.ship.player_item :
+                        self.ship.add_score (-30)
+                        self.ship.lost_life()
+                        if self.ship.life == 0 :
+                            self.suppr_figures()
+                            messagebox.showinfo ("Perdu", "Vous avez été tué par le super alien")
+                turn = 2
+            elif turn == 2 :
+                turn = 3
+            elif turn == 3 :
+                turn = 4
+            elif turn == 4 :
+                turn = 5
+            elif turn == 5 :
+                turn = 6
+            elif turn == 6 :
+                turn = 7
+            elif turn == 7 :
+                turn = 8
+            elif turn == 8 :
+                turn = 9
+            elif turn == 9 :
+                turn = 1
 
         # Exécute la fonction après un délai (pas immédiatement)
-        self.window.after (20, self.boss_move)
+        self.window.after (20, lambda : self.boss_move (turn))
 
     def boss_shot (self, back_img) :
         """ 
